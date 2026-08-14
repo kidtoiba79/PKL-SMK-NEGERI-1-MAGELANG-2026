@@ -1216,12 +1216,9 @@
       "auth_js",
       "auto",
       "button_svelte",
-      "installprompt_svelte",
       "mapmodal_svelte",
       "modal_svelte",
-      "navigation",
       "penempatan_js",
-      "sidebar_svelte",
       "src_lib_components_sidebar",
       "src_routes_app_admin_guru_page",
       "src_routes_app_admin_monitor_tv_page",
@@ -1231,12 +1228,9 @@
       "src_routes_app_admin_perusahaan_peta_page_filteredperusahaans",
       "src_routes_app_guru_laporan_page",
       "src_routes_app_guru_page",
-      "src_routes_app_layout",
       "src_routes_app_siswa_laporan_page",
       "src_routes_app_siswa_laporan_page_if",
       "src_routes_login_page",
-      "src_routes_page",
-      "src_routes_page_if",
       "stores",
       "supabase_js",
       "toast_js"
@@ -1357,27 +1351,22 @@
       "static_face_api_js_face_api_append",
       "static_face_api_js_face_api_bn",
       "static_face_api_js_face_api_databaseaction",
-      "static_face_api_js_face_api_getloadhandlers",
       "static_face_api_js_face_api_getmanager",
       "static_face_api_js_face_api_getsavehandlers",
       "static_face_api_js_face_api_getschemes",
       "static_face_api_js_face_api_go",
       "static_face_api_js_face_api_ho",
-      "static_face_api_js_face_api_jx",
       "static_face_api_js_face_api_kh",
       "static_face_api_js_face_api_ko",
       "static_face_api_js_face_api_listmodels",
       "static_face_api_js_face_api_pd",
       "static_face_api_js_face_api_put",
-      "static_face_api_js_face_api_qi",
       "static_face_api_js_face_api_removemodel",
       "static_face_api_js_face_api_save",
-      "static_face_api_js_face_api_setuserdefinedmetadata",
       "static_face_api_js_face_api_tojson",
       "static_face_api_js_face_api_updatedconfig",
       "static_face_api_js_face_api_wi",
-      "static_face_api_js_face_api_wx",
-      "static_face_api_js_face_api_yj"
+      "static_face_api_js_face_api_wx"
     ],
     "27": [
       "static_face_api_js_face_api_c5",
@@ -1425,8 +1414,12 @@
       "static_face_api_js_face_api_converttensormaptotensorsmap",
       "static_face_api_js_face_api_d5",
       "static_face_api_js_face_api_findiohandler",
+      "static_face_api_js_face_api_getdefaultmodelname",
       "static_face_api_js_face_api_jl",
       "static_face_api_js_face_api_load",
+      "static_face_api_js_face_api_loadfromdisk",
+      "static_face_api_js_face_api_loadfromuri",
+      "static_face_api_js_face_api_loadfromweightmap",
       "static_face_api_js_face_api_loadmodeljson",
       "static_face_api_js_face_api_loadstream",
       "static_face_api_js_face_api_loadstreaming",
@@ -1437,14 +1430,22 @@
       "static_face_api_js_face_api_uv"
     ],
     "30": [
+      "static_face_api_js_face_api_af",
+      "static_face_api_js_face_api_buildnodeconversionmap",
+      "static_face_api_js_face_api_calculatelosses",
       "static_face_api_js_face_api_checktrainableweightsconsistency",
       "static_face_api_js_face_api_countparams",
       "static_face_api_js_face_api_ej",
       "static_face_api_js_face_api_getclassname",
       "static_face_api_js_face_api_inputconv",
       "static_face_api_js_face_api_jh",
+      "static_face_api_js_face_api_jq",
       "static_face_api_js_face_api_ka",
+      "static_face_api_js_face_api_nodekey",
+      "static_face_api_js_face_api_ok",
+      "static_face_api_js_face_api_q7",
       "static_face_api_js_face_api_tj",
+      "static_face_api_js_face_api_tostring",
       "static_face_api_js_face_api_ys",
       "static_face_api_js_face_api_zh"
     ],
@@ -1537,30 +1538,35 @@
       "static_face_api_js_face_api_zf"
     ],
     "36": [
+      "static_face_api_js_face_api_ba",
+      "static_face_api_js_face_api_getloadhandlers",
       "static_face_api_js_face_api_getmap",
       "static_face_api_js_face_api_hi",
+      "static_face_api_js_face_api_jx",
+      "static_face_api_js_face_api_loadtrainingconfig",
+      "static_face_api_js_face_api_qi",
       "static_face_api_js_face_api_r2",
       "static_face_api_js_face_api_register",
+      "static_face_api_js_face_api_setuserdefinedmetadata",
+      "static_face_api_js_face_api_vj",
+      "static_face_api_js_face_api_xj",
+      "static_face_api_js_face_api_yj",
       "static_face_api_js_face_api_yt"
     ],
     "37": [
-      "static_face_api_js_face_api_ba",
       "static_face_api_js_face_api_bj",
       "static_face_api_js_face_api_checkmanifestandweightfiles",
       "static_face_api_js_face_api_getweighturls",
       "static_face_api_js_face_api_gk",
       "static_face_api_js_face_api_ki",
-      "static_face_api_js_face_api_loadtrainingconfig",
       "static_face_api_js_face_api_loadweights",
       "static_face_api_js_face_api_loadweightsfile",
       "static_face_api_js_face_api_parseweights",
       "static_face_api_js_face_api_populateurlflags",
       "static_face_api_js_face_api_split",
-      "static_face_api_js_face_api_vj",
       "static_face_api_js_face_api_vm",
       "static_face_api_js_face_api_wo",
       "static_face_api_js_face_api_xb",
-      "static_face_api_js_face_api_xj",
       "static_face_api_js_face_api_z4"
     ],
     "38": [
@@ -1866,18 +1872,12 @@
       "static_face_api_js_face_api_zx"
     ],
     "64": [
-      "static_face_api_js_face_api_af",
-      "static_face_api_js_face_api_buildnodeconversionmap",
-      "static_face_api_js_face_api_calculatelosses",
-      "static_face_api_js_face_api_getdefaultmodelname",
-      "static_face_api_js_face_api_jq",
-      "static_face_api_js_face_api_loadfromdisk",
-      "static_face_api_js_face_api_loadfromuri",
-      "static_face_api_js_face_api_loadfromweightmap",
-      "static_face_api_js_face_api_nodekey",
-      "static_face_api_js_face_api_ok",
-      "static_face_api_js_face_api_q7",
-      "static_face_api_js_face_api_tostring"
+      "installprompt_svelte",
+      "navigation",
+      "sidebar_svelte",
+      "src_routes_app_layout",
+      "src_routes_page",
+      "src_routes_page_if"
     ],
     "65": [
       "static_face_api_js_face_api_a4",
@@ -2139,24 +2139,24 @@
     "17": 0.11,
     "18": 0.11333333333333333,
     "19": 0.11231884057971014,
-    "20": 0.11965811965811966,
+    "20": 0.16666666666666666,
     "21": 0.19523809523809524,
     "22": 0.12380952380952381,
     "23": 0.17142857142857143,
     "24": 0.15789473684210525,
     "25": 0.15204678362573099,
-    "26": 0.10869565217391304,
+    "26": 0.14619883040935672,
     "27": 0.13450292397660818,
     "28": 0.20915032679738563,
-    "29": 0.16483516483516483,
-    "30": 0.24444444444444444,
+    "29": 0.13071895424836602,
+    "30": 0.13071895424836602,
     "31": 0.13970588235294118,
     "32": 0.225,
     "33": 0.13333333333333333,
     "34": 0.1523809523809524,
     "35": 0.15384615384615385,
-    "36": 0.4,
-    "37": 0.13725490196078433,
+    "36": 0.15384615384615385,
+    "37": 0.16483516483516483,
     "38": 0.15384615384615385,
     "39": 0.15384615384615385,
     "40": 0.19230769230769232,
@@ -2183,7 +2183,7 @@
     "61": 0.2857142857142857,
     "62": 0.38095238095238093,
     "63": 0.2857142857142857,
-    "64": 0.18181818181818182,
+    "64": 0.3333333333333333,
     "65": 0.3333333333333333,
     "66": 0.4,
     "67": 0.3333333333333333,
@@ -2346,41 +2346,8 @@
       "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
     }
   ],
-  "questions": [
-    {
-      "type": "bridge_node",
-      "question": "Why does `data()` connect `data` to `face-api.js`, `r`, `find`, `push`, `read`, `je`, `throwIfDisposed`, `extractBoxes`, `admin/siswa/+page.svelte`, `dispose`, `forwardInput`, `xe`, `lj`, `siswa/absensi/+page.svelte`, `then`, `now`, `setWeights`?",
-      "why": "High betweenness centrality (0.093) - this node is a cross-community bridge."
-    },
-    {
-      "type": "bridge_node",
-      "question": "Why does `siswa/absensi/+page.svelte` connect `siswa/absensi/+page.svelte` to `toast.js`, `$lib/stores/auth.js`, `data`?",
-      "why": "High betweenness centrality (0.058) - this node is a cross-community bridge."
-    },
-    {
-      "type": "bridge_node",
-      "question": "Why does `routes/+page.svelte` connect `$lib/stores/auth.js` to `data`?",
-      "why": "High betweenness centrality (0.010) - this node is a cross-community bridge."
-    },
-    {
-      "type": "verify_inferred",
-      "question": "Are the 113 inferred relationships involving `r()` (e.g. with `Aa()` and `abs()`) actually correct?",
-      "why": "`r()` has 113 INFERRED edges - model-reasoned connections that need verification."
-    },
-    {
-      "type": "isolated_nodes",
-      "question": "What connects `auth`, `allowJs`, `checkJs` to the rest of the system?",
-      "why": "56 weakly-connected nodes found - possible documentation gaps or missing edges."
-    },
-    {
-      "type": "low_cohesion",
-      "question": "Should `face-api.js` be split into smaller, more focused modules?",
-      "why": "Cohesion score 0.00684931506849315 - nodes in this community are weakly interconnected."
-    },
-    {
-      "type": "low_cohesion",
-      "question": "Should `r` be split into smaller, more focused modules?",
-      "why": "Cohesion score 0.053855134257144305 - nodes in this community are weakly interconnected."
-    }
-  ]
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
 }

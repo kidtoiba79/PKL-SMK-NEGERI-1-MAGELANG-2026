@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { auth } from '$lib/stores/auth.js';
 	import { supabase } from '$lib/supabase.js';
+	import Skeleton from '$lib/components/Skeleton.svelte';
 
 	let loading = $state(true);
 	let absensiList = $state([]);
@@ -58,8 +59,8 @@
 </svelte:head>
 
 <div class="page-header">
-	<h1>Kehadiran Siswa</h1>
-	<p>Pantau rekap absensi harian (Geotagging & Wajah) di perusahaan Anda</p>
+	<h1>Kehadiran Siswa di Perusahaan</h1>
+	<p>Pantau rekap absensi harian (Geotagging, Wajah & Surat Izin) di perusahaan Anda</p>
 </div>
 
 <div class="card mb-lg">
@@ -72,60 +73,75 @@
 </div>
 
 <div class="card">
-	<div class="table-wrapper">
-		<table>
-			<thead>
-				<tr>
-					<th>Nama Siswa</th>
-					<th>Jam Masuk</th>
-					<th>Jam Pulang</th>
-					<th>Status</th>
-					<th>Skor Wajah</th>
-				</tr>
-			</thead>
-			<tbody>
-				{#if loading}
-					<tr><td colspan="5" class="text-center"><div class="spinner" style="margin: 0 auto;"></div></td></tr>
-				{:else if absensiList.length > 0}
-					{#each absensiList as item}
+	{#if loading}
+		<Skeleton variant="table" rows={4} />
+	{:else}
+		<div class="table-wrapper">
+			<table>
+				<thead>
+					<tr>
+						<th>Nama Siswa</th>
+						<th>Jam Masuk</th>
+						<th>Jam Pulang</th>
+						<th>Status</th>
+						<th>Keterangan / Verifikasi</th>
+					</tr>
+				</thead>
+				<tbody>
+					{#if absensiList.length > 0}
+						{#each absensiList as item}
+							<tr>
+								<td>
+									<strong>{item.siswa.nama}</strong><br/>
+									<span class="text-xs text-muted">{item.siswa.kelas}</span>
+								</td>
+								<td>
+									{#if item.jam_masuk}
+										{new Date(item.jam_masuk).toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'})}
+									{:else}
+										-
+									{/if}
+								</td>
+								<td>
+									{#if item.jam_pulang}
+										{new Date(item.jam_pulang).toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'})}
+									{:else}
+										-
+									{/if}
+								</td>
+								<td>
+									<span class="badge badge-{item.status}">{item.status}</span>
+								</td>
+								<td>
+									{#if item.status === 'hadir'}
+										{#if item.face_confidence_masuk}
+											<span class="text-xs text-success">AI Match: {(item.face_confidence_masuk * 100).toFixed(0)}%</span>
+										{/if}
+									{:else if item.status === 'izin' || item.status === 'sakit'}
+										<div class="text-xs">
+											<strong>Alasan:</strong> {item.keterangan_izin || '-'}
+											{#if item.surat_izin_url}
+												<br/>
+												<a href={item.surat_izin_url} target="_blank" rel="noopener noreferrer" class="text-accent" style="display: inline-flex; align-items: center; gap: 2px; margin-top: 2px;">
+													📄 Lihat Surat Bukti
+												</a>
+											{/if}
+										</div>
+									{:else}
+										-
+									{/if}
+								</td>
+							</tr>
+						{/each}
+					{:else}
 						<tr>
-							<td>
-								<strong>{item.siswa.nama}</strong><br/>
-								<span class="text-xs text-muted">{item.siswa.kelas}</span>
-							</td>
-							<td>
-								{#if item.jam_masuk}
-									{new Date(item.jam_masuk).toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'})}
-								{:else}
-									-
-								{/if}
-							</td>
-							<td>
-								{#if item.jam_pulang}
-									{new Date(item.jam_pulang).toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'})}
-								{:else}
-									-
-								{/if}
-							</td>
-							<td><span class="badge badge-{item.status}">{item.status}</span></td>
-							<td>
-								{#if item.face_confidence_masuk}
-									<span class="text-xs">Masuk: {(item.face_confidence_masuk * 100).toFixed(0)}%</span>
-								{/if}
-								{#if item.face_confidence_pulang}
-									<br/><span class="text-xs">Pulang: {(item.face_confidence_pulang * 100).toFixed(0)}%</span>
-								{/if}
+							<td colspan="5" class="text-center text-muted" style="padding: var(--space-xl) 0;">
+								Tidak ada data absensi pada tanggal ini.
 							</td>
 						</tr>
-					{/each}
-				{:else}
-					<tr>
-						<td colspan="5" class="text-center text-muted" style="padding: var(--space-xl) 0;">
-							Tidak ada data absensi pada tanggal ini.
-						</td>
-					</tr>
-				{/if}
-			</tbody>
-		</table>
-	</div>
+					{/if}
+				</tbody>
+			</table>
+		</div>
+	{/if}
 </div>

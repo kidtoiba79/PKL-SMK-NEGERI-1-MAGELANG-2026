@@ -4,13 +4,15 @@
 	 * @property {'checking' | 'inside' | 'outside' | 'error'} [status='checking']
 	 * @property {number} [distance=0]
 	 * @property {number} [maxRadius=500]
+	 * @property {number} [accuracy=0]
 	 */
 
 	/** @type {Props} */
 	let { 
 		status = 'checking',
 		distance = 0,
-		maxRadius = 500
+		maxRadius = 500,
+		accuracy = 0
 	} = $props();
 
 	let config = $derived.by(() => {
@@ -21,9 +23,16 @@
 	});
 </script>
 
-<div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border: 1px solid {config.color}; background: {config.color}15; max-width: fit-content;">
-	<svg width="18" height="18" fill="none" stroke={config.color} stroke-width="2" viewBox="0 0 24 24">
-		<path stroke-linecap="round" stroke-linejoin="round" d={config.icon}></path>
-	</svg>
-	<span style="font-size: 0.75rem; font-weight: 600; color: {config.color};">{config.text}</span>
+<div style="display: inline-flex; flex-direction: column; align-items: center; gap: 0.25rem;">
+	<div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border: 1px solid {config.color}; background: {config.color}15; border-radius: var(--radius, 8px);">
+		<svg width="18" height="18" fill="none" stroke={config.color} stroke-width="2" viewBox="0 0 24 24">
+			<path stroke-linecap="round" stroke-linejoin="round" d={config.icon}></path>
+		</svg>
+		<span style="font-size: 0.75rem; font-weight: 600; color: {config.color};">{config.text}</span>
+	</div>
+	{#if accuracy > 0 && status !== 'error'}
+		<span class="text-xs text-muted" style="font-size: 0.7rem;">
+			Akurasi GPS: ±{accuracy}m {accuracy <= 30 ? '(Sangat Akurat 🟢)' : '(Cukup 🟡)'}
+		</span>
+	{/if}
 </div>

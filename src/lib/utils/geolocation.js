@@ -1,9 +1,10 @@
 /**
- * Wrapper Promise untuk navigator.geolocation
+ * Wrapper Promise untuk navigator.geolocation dengan validasi akurasi & anti-spoofing dasar
  * @param {number} timeoutMs - Max tunggu dalam milisecond (default 10000ms / 10s)
- * @returns {Promise<{lat: number, lng: number, accuracy: number}>}
+ * @param {number} maxAllowedAccuracy - Batas toleransi error akurasi GPS dalam meter (default 150m)
+ * @returns {Promise<{lat: number, lng: number, accuracy: number, isHighAccuracy: boolean}>}
  */
-export function getCurrentPosition(timeoutMs = 10000) {
+export function getCurrentPosition(timeoutMs = 12000, maxAllowedAccuracy = 150) {
     return new Promise((resolve, reject) => {
         if (!navigator.geolocation) {
             reject(new Error('Geolocation tidak didukung di browser HP/Device Anda.'));
@@ -12,10 +13,25 @@ export function getCurrentPosition(timeoutMs = 10000) {
 
         navigator.geolocation.getCurrentPosition(
             (position) => {
+                const { latitude, longitude, accuracy } = position.coords;
+
+                // Cek koordinat dasar
+                if (latitude === 0 && longitude === 0) {
+                    reject(new Error('Koordinat GPS tidak valid (Null Island detected). Pastikan GPS aktif.'));
+                    return;
+                }
+
+                // Cek akurasi GPS: jika sinyal terlalu bias (> 150 meter), beri peringatan agar user berada di area terbuka
+                if (accuracy > maxAllowedAccuracy) {
+                    reject(new Error(`Akurasi GPS terlalu rendah (±${Math.round(accuracy)}m). Silakan pindah ke luar ruangan atau aktifkan High Accuracy GPS.`));
+                    return;
+                }
+
                 resolve({
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude,
-                    accuracy: position.coords.accuracy
+                    lat: latitude,
+                    lng: longitude,
+                    accuracy: Math.round(accuracy),
+                    isHighAccuracy: accuracy <= 35
                 });
             },
             (error) => {

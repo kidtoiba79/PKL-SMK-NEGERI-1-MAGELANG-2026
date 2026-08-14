@@ -1,119 +1,122 @@
-# Graph Report - PKL SMK N 1 MAGELANG  (2026-08-14)
+# Graph Report - .  (2026-08-14)
 
 ## Corpus Check
-- 60 files · ~65,549 words
-- Verdict: corpus is large enough that graph structure adds value.
+- cluster-only mode — file stats not available
 
 ## Summary
-- 1842 nodes · 6470 edges · 110 communities (96 shown, 14 thin omitted)
-- Extraction: 84% EXTRACTED · 16% INFERRED · 0% AMBIGUOUS · INFERRED: 1040 edges (avg confidence: 0.5)
+- 1883 nodes · 6490 edges · 117 communities (99 shown, 18 thin omitted)
+- Extraction: 84% EXTRACTED · 16% INFERRED · 0% AMBIGUOUS · INFERRED: 1037 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
+## Graph Freshness
+- Built from commit: `3e180691`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
+
 ## Community Hubs (Navigation)
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- navigation related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- package related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- jsconfig related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_manifest related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- src_app_d related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
-- static_face_api_js_f related
+- face-api.js
+- r
+- get
+- makeTensorInfo
+- runWebGLProgram
+- E
+- add
+- devDependencies
+- push
+- slice
+- read
+- iterator
+- disposeIntermediateTensorInfo
+- throwIfDisposed
+- constructor
+- log
+- runKernelFunc
+- Z
+- dispose
+- call
+- $lib/stores/auth.js
+- forwardInput
+- xe
+- lj
+- execute
+- siswa/absensi/+page.svelte
+- save
+- then
+- data
+- load
+- tj
+- compute
+- getNumber
+- next
+- concat
+- ts
+- getMap
+- split
+- compilerOptions
+- apply
+- processStack
+- align
+- incRef
+- je
+- ra
+- It
+- draw
+- Es
+- hr
+- admin/siswa/+page.svelte
+- build
+- k3
+- oc
+- variable
+- runAndExtendWithFaceDetections
+- manifest.json
+- toast.js
+- dP
+- initializeBackend
+- extractParams
+- now
+- Xp
+- ar
+- setWeights
+- toString
+- i4
+- downloadMatrixDriver
+- find
+- contextIdforContexts
+- getNodeAtIndex
+- Nr
+- aC
+- addItemToPoll
+- b2
+- i2
+- serialForEach
+- +layout.svelte
+- MapModal.svelte
+- extractBoxes
+- assertIsValidBox
+- O1
+- matchDescriptor
+- p4
+- R1
+- rescale
+- M1
+- vF
+- app.d.ts
+- aO
+- N0
+- br
+- calibrate
+- registerCallbackConstructor
+- findLayer
+- findShardForByte
+- fK
+- getDedupedMetricsNames
+- runMobilenet
+- T0
+- pW
+- tN
+- setItem
+- vercel.json
 
 ## God Nodes (most connected - your core abstractions)
 1. `get()` - 223 edges
@@ -128,401 +131,381 @@
 10. `o()` - 102 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `handleFaceCapture()` --calls--> `detectFaces()`  [EXTRACTED]
-  src/routes/(app)/siswa/absensi/+page.svelte → src/lib/faceAttendance.js
-- `handleFaceCapture()` --calls--> `validateAttendanceTime()`  [EXTRACTED]
-  src/routes/(app)/siswa/absensi/+page.svelte → src/lib/utils/timeValidator.js
-- `loadFaceAPI()` --calls--> `loadFaceApi()`  [EXTRACTED]
-  src/routes/(app)/siswa/absensi/+page.svelte → src/lib/faceAttendance.js
-- `handleFaceCapture()` --calls--> `matchFace()`  [EXTRACTED]
-  src/routes/(app)/siswa/absensi/+page.svelte → src/lib/faceAttendance.js
-- `checkLocation()` --calls--> `getCurrentPosition()`  [EXTRACTED]
-  src/routes/(app)/siswa/absensi/+page.svelte → src/lib/utils/geolocation.js
+- `admin/siswa/+page.svelte` --indirect_call--> `data()`  [INFERRED]
+  src/routes/(app)/admin/siswa/+page.svelte → static/face-api/js/face-api.js
+- `siswa/absensi/+page.svelte` --indirect_call--> `data()`  [INFERRED]
+  src/routes/(app)/siswa/absensi/+page.svelte → static/face-api/js/face-api.js
+- `penempatan/+page.svelte` --indirect_call--> `data()`  [INFERRED]
+  src/routes/(app)/admin/penempatan/+page.svelte → static/face-api/js/face-api.js
+- `perusahaan/+page.svelte` --indirect_call--> `data()`  [INFERRED]
+  src/routes/(app)/admin/perusahaan/+page.svelte → static/face-api/js/face-api.js
+- `pembimbing-industri/+page.svelte` --indirect_call--> `data()`  [INFERRED]
+  src/routes/(app)/pembimbing-industri/+page.svelte → static/face-api/js/face-api.js
 
 ## Import Cycles
 - None detected.
 
-## Communities (110 total, 14 thin omitted)
+## Communities (117 total, 18 thin omitted)
 
-### Community 0 - "static_face_api_js_f related"
+### Community 0 - "face-api.js"
 Cohesion: 0.01
-Nodes (18): a0(), aV(), CG(), Cge(), CW(), EI(), encode(), KT() (+10 more)
+Nodes (16): a0(), aV(), CG(), Cge(), CW(), EI(), KT(), L5() (+8 more)
 
-### Community 1 - "static_face_api_js_f related"
-Cohesion: 0.06
-Nodes (198): a(), Aa(), age(), aL(), aN(), aP(), at(), b() (+190 more)
-
-### Community 2 - "static_face_api_js_f related"
-Cohesion: 0.06
-Nodes (74): ace(), bde(), che(), cpe(), Dce(), disposeData(), Ede(), Efe() (+66 more)
-
-### Community 3 - "navigation related"
-Cohesion: 0.06
-Nodes (23): detectFaces(), drawDetections(), loadFaceApi(), matchFace(), auth, penempatan, toast, supabase (+15 more)
-
-### Community 4 - "static_face_api_js_f related"
+### Community 1 - "r"
 Cohesion: 0.05
-Nodes (63): ag(), Ane(), Bne(), cie(), coe(), cre(), Cse(), dae() (+55 more)
+Nodes (199): a(), Aa(), age(), aL(), aN(), aP(), b(), bD() (+191 more)
 
-### Community 5 - "static_face_api_js_f related"
-Cohesion: 0.05
-Nodes (59): A7(), afe(), bie(), bufferSync(), cj(), cle(), convertAndCacheOnCPU(), CX() (+51 more)
-
-### Community 6 - "static_face_api_js_f related"
+### Community 2 - "get"
 Cohesion: 0.06
-Nodes (49): aae(), ae(), aue(), aX(), Bse(), Bv(), cte(), disposeIntermediateTensorInfo() (+41 more)
+Nodes (73): ace(), bde(), che(), cpe(), Dce(), disposeData(), Ede(), Efe() (+65 more)
 
-### Community 7 - "static_face_api_js_f related"
+### Community 3 - "makeTensorInfo"
+Cohesion: 0.05
+Nodes (62): $7(), A7(), afe(), bie(), bufferSync(), bY(), cj(), cle() (+54 more)
+
+### Community 4 - "runWebGLProgram"
+Cohesion: 0.05
+Nodes (60): ag(), Ane(), Bne(), cie(), coe(), cre(), Cse(), dae() (+52 more)
+
+### Community 5 - "E"
 Cohesion: 0.05
 Nodes (48): _3(), a3(), az(), b3(), cP(), ct(), CU(), dL() (+40 more)
 
-### Community 8 - "static_face_api_js_f related"
-Cohesion: 0.07
-Nodes (38): append(), B5(), bN(), databaseAction(), expand(), getManager(), getSaveHandlers(), getSchemes() (+30 more)
+### Community 6 - "add"
+Cohesion: 0.08
+Nodes (39): ab(), add(), addFeed(), aH(), B5(), bt(), checkShape(), dM() (+31 more)
 
-### Community 9 - "static_face_api_js_f related"
+### Community 7 - "devDependencies"
 Cohesion: 0.06
-Nodes (38): blockUntilAllProgramsCompleted(), buildVao(), bytes(), cast(), createFloat16MatrixTexture(), createFloat16PackedMatrixTexture(), createFloat32MatrixTexture(), createPackedMatrixTexture() (+30 more)
+Nodes (35): chart.js, dependencies, chart.js, leaflet, @supabase/supabase-js, xlsx, devDependencies, svelte (+27 more)
 
-### Community 10 - "static_face_api_js_f related"
+### Community 8 - "push"
 Cohesion: 0.07
-Nodes (34): _4(), checkManifestAndWeightFiles(), compile(), createCallbacks(), D4(), dC(), eT(), eV() (+26 more)
+Nodes (36): _4(), Bee(), cM(), compile(), createCallbacks(), D4(), dC(), eT() (+28 more)
 
-### Community 11 - "static_face_api_js_f related"
+### Community 9 - "slice"
 Cohesion: 0.07
-Nodes (34): _9(), b9(), Bme(), bO(), g9(), h2(), hA(), I9() (+26 more)
+Nodes (36): _9(), b9(), Bme(), bO(), eq(), g9(), h2(), hA() (+28 more)
 
-### Community 12 - "static_face_api_js_f related"
-Cohesion: 0.09
-Nodes (31): abs(), assertNotDisposed(), checkNumericalProblems(), compileAndRun(), createTensorFromGPUData(), dataToGPU(), Ea(), Kn() (+23 more)
+### Community 10 - "read"
+Cohesion: 0.08
+Nodes (36): abs(), assertNotDisposed(), checkNumericalProblems(), compileAndRun(), convertAndCacheOnCPU(), createTensorFromGPUData(), dataToGPU(), decode() (+28 more)
 
-### Community 13 - "package related"
-Cohesion: 0.07
-Nodes (29): dependencies, @supabase/supabase-js, devDependencies, svelte, svelte-check, @sveltejs/adapter-auto, @sveltejs/kit, @sveltejs/vite-plugin-svelte (+21 more)
+### Community 11 - "iterator"
+Cohesion: 0.06
+Nodes (34): batch(), columnMajorBatch(), columnNames(), concatenate(), decodeUTF8(), f8(), filter(), forEachAsync() (+26 more)
 
-### Community 14 - "static_face_api_js_f related"
-Cohesion: 0.09
-Nodes (29): backend(), C5(), dfe(), eb(), El(), evaluateFlag(), fetch(), findBackend() (+21 more)
+### Community 12 - "disposeIntermediateTensorInfo"
+Cohesion: 0.08
+Nodes (32): aae(), aue(), aX(), Bse(), cte(), disposeIntermediateTensorInfo(), Dse(), ga() (+24 more)
 
-### Community 15 - "static_face_api_js_f related"
+### Community 13 - "throwIfDisposed"
+Cohesion: 0.08
+Nodes (31): blockUntilAllProgramsCompleted(), buildVao(), bytes(), cast(), createFloat16MatrixTexture(), createFloat16PackedMatrixTexture(), createFloat32MatrixTexture(), createPackedMatrixTexture() (+23 more)
+
+### Community 14 - "constructor"
+Cohesion: 0.08
+Nodes (31): constructor(), f9(), getAttr(), getCompilationKey(), getDepthCoordString(), getHeightCoordString(), getInputSamplingString(), getOutOfBoundsCondition() (+23 more)
+
+### Community 15 - "log"
+Cohesion: 0.08
+Nodes (27): a9(), acquireTexture(), checkCompileCompletion(), checkCompileCompletionAsync(), checkCompletion_(), checkCompletionAsync_(), computeBytes(), create() (+19 more)
+
+### Community 16 - "runKernelFunc"
 Cohesion: 0.10
-Nodes (28): add(), addFeed(), aH(), Bg(), bt(), checkShape(), dh(), dM() (+20 more)
+Nodes (25): addTapeNode(), checkKernelForMemLeak(), clone(), cloneAndKeepTensor(), endTape(), eO(), Ex(), getTensorsForGradient() (+17 more)
 
-### Community 16 - "static_face_api_js_f related"
-Cohesion: 0.09
-Nodes (27): b0(), Ba(), bj(), D5(), extractIterations(), findIOHandler(), getLoadHandlers(), getWeightUrls() (+19 more)
+### Community 17 - "Z"
+Cohesion: 0.11
+Nodes (25): ae(), aI(), Bv(), ee(), hh(), iu(), J(), j1() (+17 more)
 
-### Community 17 - "static_face_api_js_f related"
-Cohesion: 0.13
-Nodes (26): checkNumSamples(), fitDataset(), fitLoop(), getDedupedMetricsNames(), getMonitorValue(), Ht(), Jr(), lj() (+18 more)
+### Community 18 - "dispose"
+Cohesion: 0.11
+Nodes (25): bK(), checkTensorForDisposalWithNodeLiveUntilInfo(), clearAndClose(), delete(), dispose(), disposeRegisteredKernels(), disposeTensor(), disposeVariable() (+17 more)
 
-### Community 18 - "static_face_api_js_f related"
+### Community 19 - "call"
+Cohesion: 0.11
+Nodes (24): Aj(), Bg(), bs(), call(), centerCrop(), computeMask(), dh(), fixUnknownDimension() (+16 more)
+
+### Community 20 - "$lib/stores/auth.js"
 Cohesion: 0.12
-Nodes (23): Aj(), aq(), bs(), call(), centerCrop(), computeMask(), getNoiseShape(), inputConv() (+15 more)
+Nodes (14): $lib/stores/auth.js, chart.js/auto, $lib/components/Button.svelte, $lib/components/InstallPrompt.svelte, $lib/components/MapModal.svelte, $lib/components/Modal.svelte, $app/navigation, $lib/stores/penempatan.js (+6 more)
 
-### Community 19 - "static_face_api_js_f related"
+### Community 21 - "forwardInput"
+Cohesion: 0.20
+Nodes (21): AD(), arraySync(), computeFaceDescriptor(), dataSync(), detect(), detectLandmarks(), forward(), forwardInput() (+13 more)
+
+### Community 22 - "xe"
 Cohesion: 0.12
-Nodes (21): assign(), checkTensorForDisposalWithNodeLiveUntilInfo(), clearAndClose(), delete(), disposeTensor(), disposeVariable(), disposeVariables(), endScope() (+13 more)
+Nodes (21): bh(), db(), div(), gh(), ib(), lb(), nb(), Nn() (+13 more)
 
-### Community 20 - "static_face_api_js_f related"
+### Community 23 - "lj"
+Cohesion: 0.17
+Nodes (21): checkNumSamples(), fitDataset(), fitLoop(), getMonitorValue(), Ht(), Jr(), lj(), makeTrainFunction() (+13 more)
+
+### Community 24 - "execute"
 Cohesion: 0.16
 Nodes (20): addStructuredOutputNames(), checkInputs(), checkInputShapeAndType(), checkOutputs(), cloneTensorList(), cloneTensorMap(), disposeIntermediateTensors(), execute() (+12 more)
 
-### Community 21 - "static_face_api_js_f related"
-Cohesion: 0.17
-Nodes (19): $7(), aI(), bP(), bY(), convertValue(), d3(), $H(), HN() (+11 more)
+### Community 25 - "siswa/absensi/+page.svelte"
+Cohesion: 0.15
+Nodes (12): detectFaces(), drawDetections(), loadFaceApi(), matchFace(), getCurrentPosition(), getDistance(), validateAttendanceTime(), siswa/absensi/+page.svelte (+4 more)
 
-### Community 22 - "static_face_api_js_f related"
-Cohesion: 0.13
-Nodes (19): ab(), db(), fh(), gh(), ib(), lb(), lW(), nb() (+11 more)
-
-### Community 23 - "static_face_api_js_f related"
+### Community 26 - "save"
 Cohesion: 0.11
-Nodes (19): Bee(), cM(), concat(), f4(), gather(), getNamedWeights(), getWeights(), hz() (+11 more)
+Nodes (24): append(), bN(), databaseAction(), getLoadHandlers(), getManager(), getSaveHandlers(), getSchemes(), gO() (+16 more)
 
-### Community 24 - "static_face_api_js_f related"
-Cohesion: 0.11
-Nodes (19): constructor(), getAttr(), getDepthCoordString(), getHeightCoordString(), getInputSamplingString(), getOutOfBoundsCondition(), getOutput(), getOutputDepthSize() (+11 more)
-
-### Community 25 - "static_face_api_js_f related"
+### Community 27 - "then"
 Cohesion: 0.13
-Nodes (18): checkTrainableWeightsConsistency(), countParams(), ej(), f9(), getCompilationKey(), JH(), jle(), join() (+10 more)
+Nodes (19): C5(), dfe(), eb(), El(), evaluateFlag(), fc(), fetch(), getAsync() (+11 more)
 
-### Community 26 - "static_face_api_js_f related"
+### Community 28 - "data"
+Cohesion: 0.21
+Nodes (13): auth, penempatan, supabase, penempatan/+page.svelte, perusahaan/+page.svelte, monitoring/+page.svelte, pembimbing-industri/absensi/+page.svelte, pembimbing-industri/+page.svelte (+5 more)
+
+### Community 29 - "load"
+Cohesion: 0.16
+Nodes (14): $5(), convertTensorMapToTensorsMap(), D5(), findIOHandler(), jL(), load(), loadModelJSON(), loadStream() (+6 more)
+
+### Community 30 - "tj"
+Cohesion: 0.24
+Nodes (10): checkTrainableWeightsConsistency(), countParams(), ej(), getClassName(), inputConv(), JH(), Ka(), tj() (+2 more)
+
+### Community 31 - "compute"
 Cohesion: 0.14
 Nodes (17): calculateFirstParentOutputIndex(), calculateOutputIndex(), calculateOutputIndexRowSplit(), calculateOutputIndexValueRowID(), calculateOutputSize(), compute(), createNGrams(), getFirstDimensionSize() (+9 more)
 
-### Community 27 - "static_face_api_js_f related"
-Cohesion: 0.13
-Nodes (16): align(), alignDlib(), alignMinBbox(), bh(), div(), Ek(), getLeftEye(), getMouth() (+8 more)
-
-### Community 28 - "static_face_api_js_f related"
-Cohesion: 0.25
-Nodes (16): arraySync(), computeFaceDescriptor(), dataSync(), detect(), detectLandmarks(), getInputHeight(), getInputWidth(), getReshapedInputDimensions() (+8 more)
-
-### Community 29 - "static_face_api_js_f related"
+### Community 32 - "getNumber"
 Cohesion: 0.23
 Nodes (16): beginQuery(), cA(), createFence(), endQuery(), getNumber(), getQueryTime(), getQueryTimerExtension(), getQueryTimerExtensionWebGL1() (+8 more)
 
-### Community 30 - "static_face_api_js_f related"
+### Community 33 - "next"
 Cohesion: 0.13
 Nodes (16): chooseIndex(), cropAndResizeFrame(), DE(), flattenQueue(), getAudioData(), getTensorFromAudioDataArray(), H5(), next() (+8 more)
 
-### Community 31 - "static_face_api_js_f related"
+### Community 34 - "concat"
 Cohesion: 0.15
-Nodes (15): array(), AW(), bK(), dispose(), disposeRegisteredKernels(), disposeWeights(), extractBoxes(), extractPredictedClass() (+7 more)
+Nodes (15): concat(), f4(), gather(), hz(), k2(), Lie(), nonTrainableWeights(), popBack() (+7 more)
 
-### Community 32 - "jsconfig related"
+### Community 35 - "ts"
+Cohesion: 0.15
+Nodes (14): aee(), fA(), getUniformLocation(), L2(), mA(), P0(), pk(), poolingFunction() (+6 more)
+
+### Community 36 - "getMap"
+Cohesion: 0.40
+Nodes (5): getMap(), HI(), r2(), register(), Yt()
+
+### Community 37 - "split"
+Cohesion: 0.14
+Nodes (18): Ba(), bj(), checkManifestAndWeightFiles(), getWeightUrls(), gK(), kI(), loadTrainingConfig(), loadWeights() (+10 more)
+
+### Community 38 - "compilerOptions"
 Cohesion: 0.15
 Nodes (12): compilerOptions, allowJs, checkJs, esModuleInterop, forceConsistentCasingInFileNames, moduleResolution, resolveJsonModule, skipLibCheck (+4 more)
 
-### Community 33 - "static_face_api_js_f related"
+### Community 39 - "apply"
 Cohesion: 0.15
 Nodes (13): addInboundNode(), addLoss(), addWeight(), apply(), assertInputCompatibility(), eH(), Ff(), nH() (+5 more)
 
-### Community 34 - "static_face_api_js_f related"
+### Community 40 - "processStack"
+Cohesion: 0.19
+Nodes (13): checkTensorForDisposal(), EM(), L1(), mapArgsToSignature(), mapArgToTensorInfo(), mapFunction(), mapNode(), mapSignatureEntries() (+5 more)
+
+### Community 41 - "align"
+Cohesion: 0.17
+Nodes (12): align(), alignDlib(), alignMinBbox(), Ek(), getLeftEye(), getMouth(), getRefPointsForAlignment(), getRightEye() (+4 more)
+
+### Community 42 - "incRef"
 Cohesion: 0.18
-Nodes (12): AD(), Ak(), forward(), forwardInput(), Gd(), Kk(), mge(), reshapedInputDimensions() (+4 more)
+Nodes (11): applyGradients(), assign(), computeGradients(), Dw(), epsilon(), floatPrecision(), incRef(), incrementIterations() (+3 more)
 
-### Community 35 - "static_face_api_js_f related"
+### Community 43 - "je"
 Cohesion: 0.18
-Nodes (12): concatenate(), decodeUTF8(), f8(), filter(), iterator(), map(), mapAsync(), prefetch() (+4 more)
+Nodes (11): AW(), je(), Lc(), lN(), lW(), ns(), uP(), Uw() (+3 more)
 
-### Community 36 - "static_face_api_js_f related"
-Cohesion: 0.24
-Nodes (11): addTapeNode(), checkKernelForMemLeak(), Ex(), getTensorsForGradient(), isTapeOn(), keep(), mx(), runKernel() (+3 more)
+### Community 44 - "ra"
+Cohesion: 0.29
+Nodes (11): bP(), convertValue(), HN(), isValidTruncated(), nextValue(), oz(), qL(), ra() (+3 more)
 
-### Community 37 - "static_face_api_js_f related"
-Cohesion: 0.22
-Nodes (11): build(), computeElementwiseOpOutputShape(), hj(), interpretAxes(), JI(), os(), predict(), predictLoop() (+3 more)
-
-### Community 38 - "static_face_api_js_f related"
+### Community 45 - "It"
 Cohesion: 0.20
-Nodes (11): fz(), hr(), Na(), nk(), ph(), R7(), sM(), t7() (+3 more)
+Nodes (11): computeSingleOutputShape(), cz(), Dv(), getInitialState(), getStates(), It(), pN(), qM() (+3 more)
 
-### Community 39 - "static_face_api_js_f related"
+### Community 46 - "draw"
+Cohesion: 0.24
+Nodes (10): asSortedArray(), draw(), getUpperLeft(), jk(), measureHeight(), measureWidth(), nge(), oge() (+2 more)
+
+### Community 47 - "Es"
+Cohesion: 0.33
+Nodes (10): at(), en(), Es(), FT(), o0(), pr(), ps(), Vx() (+2 more)
+
+### Community 48 - "hr"
 Cohesion: 0.22
-Nodes (10): a9(), acquireTexture(), computeBytes(), Gv(), ja(), log(), releaseGPUData(), releaseTexture() (+2 more)
+Nodes (10): fz(), hr(), nk(), ph(), R7(), sM(), t7(), WY() (+2 more)
 
-### Community 40 - "static_face_api_js_f related"
-Cohesion: 0.27
-Nodes (10): checkTensorForDisposal(), mapArgsToSignature(), mapArgToTensorInfo(), mapFunction(), mapNode(), mapSignatureEntries(), processChildNodes(), processStack() (+2 more)
-
-### Community 41 - "static_face_api_js_f related"
+### Community 49 - "admin/siswa/+page.svelte"
 Cohesion: 0.22
-Nodes (9): disposeMasks(), evaluateDataset(), getMask(), getValue(), hasKey(), makeTestFunction(), names(), oc() (+1 more)
+Nodes (3): SISWA_TEMPLATE, admin/siswa/+page.svelte, generatingAkun
 
-### Community 42 - "static_face_api_js_f related"
-Cohesion: 0.22
-Nodes (9): aee(), fA(), getUniformLocation(), mA(), pk(), ree(), registerBackend(), ts() (+1 more)
-
-### Community 43 - "static_face_api_js_f related"
-Cohesion: 0.22
-Nodes (9): Af(), buildNodeConversionMap(), calculateLosses(), jq(), nodeKey(), ok(), q7(), shuffle() (+1 more)
-
-### Community 44 - "static_face_api_js_f related"
+### Community 50 - "build"
 Cohesion: 0.28
-Nodes (9): asSortedArray(), draw(), getUpperLeft(), jk(), measureHeight(), measureWidth(), oge(), uge() (+1 more)
+Nodes (9): build(), computeElementwiseOpOutputShape(), interpretAxes(), JI(), predict(), predictLoop(), predictOnBatch(), summary() (+1 more)
 
-### Community 45 - "static_face_api_js_f related"
+### Community 51 - "k3"
 Cohesion: 0.31
 Nodes (9): bw(), customGrad(), k3(), sf(), tT(), us(), x3(), y3() (+1 more)
 
-### Community 46 - "static_face_api_js_f related"
+### Community 52 - "oc"
 Cohesion: 0.25
-Nodes (9): computeSingleOutputShape(), cz(), getInitialState(), getStates(), It(), Kx(), resetStates(), Va() (+1 more)
+Nodes (8): disposeMasks(), getMask(), getValue(), hasKey(), makeTestFunction(), names(), oc(), UI()
 
-### Community 47 - "static_face_api_js_f related"
+### Community 53 - "variable"
 Cohesion: 0.28
 Nodes (9): freeze(), getFrozenParams(), getParamFromPath(), getParamList(), getTrainableParams(), reassignParamFromPath(), serializeParams(), traversePropertyPath() (+1 more)
 
-### Community 48 - "static_face_api_js_f related"
+### Community 54 - "runAndExtendWithFaceDetections"
 Cohesion: 0.31
 Nodes (9): jd(), runAndExtendWithFaceDetection(), runAndExtendWithFaceDetections(), runNet(), withAgeAndGender(), withFaceDescriptors(), withFaceExpressions(), withFaceLandmarks() (+1 more)
 
-### Community 49 - "static_manifest related"
+### Community 55 - "manifest.json"
 Cohesion: 0.22
 Nodes (8): background_color, description, display, icons, name, short_name, start_url, theme_color
 
-### Community 50 - "static_face_api_js_f related"
-Cohesion: 0.25
-Nodes (8): applyGradients(), computeGradients(), Dw(), epsilon(), floatPrecision(), incrementIterations(), minimize(), wL()
+### Community 56 - "toast.js"
+Cohesion: 0.29
+Nodes (3): toast, absensi-wajah/+page.svelte, pembimbing-industri/jurnal/+page.svelte
 
-### Community 51 - "static_face_api_js_f related"
+### Community 57 - "dP"
+Cohesion: 0.29
+Nodes (8): Ak(), clipAtImageBorders(), dP(), floor(), getInput(), reshapedInputDimensions(), toBatchTensor(), yr()
+
+### Community 58 - "initializeBackend"
+Cohesion: 0.36
+Nodes (8): backend(), findBackend(), getSortedBackends(), initializeBackend(), initializeBackendsAndReturnBest(), ready(), setBackend(), setupRegisteredKernels()
+
+### Community 59 - "extractParams"
 Cohesion: 0.32
 Nodes (8): bge(), extractClassifierParams(), extractParams(), extractWeights(), getClassifierChannelsIn(), getClassifierChannelsOut(), loadClassifierParams(), Zge()
 
-### Community 52 - "static_face_api_js_f related"
-Cohesion: 0.39
-Nodes (8): G1(), indexToLoc(), K1(), locToIndex(), mt(), set(), uz(), w7()
-
-### Community 53 - "static_face_api_js_f related"
+### Community 60 - "now"
 Cohesion: 0.29
-Nodes (7): BI(), getMap(), HI(), r2(), register(), st(), Yt()
+Nodes (8): EG(), endTimer(), kc(), now(), profileKernel(), shuffle(), startTimer(), time()
 
-### Community 54 - "static_face_api_js_f related"
+### Community 61 - "Xp"
 Cohesion: 0.29
-Nodes (7): clone(), cloneAndKeepTensor(), reverse(), stateSize(), vz(), X1(), xz()
+Nodes (8): fi(), jg(), jP(), oi(), Qv(), Tc(), vP(), Xp()
 
-### Community 55 - "static_face_api_js_f related"
-Cohesion: 0.33
-Nodes (7): EG(), endTimer(), kc(), now(), profileKernel(), startTimer(), time()
+### Community 62 - "ar"
+Cohesion: 0.38
+Nodes (7): ar(), Kx(), l0(), Lg(), lh(), verifyArgs(), zg()
 
-### Community 56 - "static_face_api_js_f related"
-Cohesion: 0.33
-Nodes (7): en(), JM(), kM(), Mv(), ps(), sN(), Vx()
-
-### Community 57 - "static_face_api_js_f related"
-Cohesion: 0.33
-Nodes (7): endTape(), eO(), gradients(), scopedRun(), startScope(), startTape(), tidy()
-
-### Community 58 - "static_face_api_js_f related"
+### Community 63 - "setWeights"
 Cohesion: 0.29
-Nodes (7): fc(), G5(), logKernelProfile(), repeat(), take(), xM(), yM()
+Nodes (7): b0(), extractIterations(), getNamedWeights(), getWeights(), saveIterations(), setWeights(), Zx()
 
-### Community 59 - "static_face_api_js_f related"
+### Community 64 - "toString"
+Cohesion: 0.18
+Nodes (12): Af(), buildNodeConversionMap(), calculateLosses(), getDefaultModelName(), jq(), loadFromDisk(), loadFromUri(), loadFromWeightMap() (+4 more)
+
+### Community 65 - "i4"
 Cohesion: 0.33
 Nodes (6): a4(), c2(), i4(), o4(), r4(), s4()
 
-### Community 60 - "static_face_api_js_f related"
-Cohesion: 0.47
-Nodes (6): ar(), l0(), Lg(), lh(), verifyArgs(), zg()
-
-### Community 61 - "static_face_api_js_f related"
-Cohesion: 0.33
-Nodes (6): batch(), columnMajorBatch(), i8(), o8(), rowMajorBatch(), z5()
-
-### Community 62 - "static_face_api_js_f related"
+### Community 66 - "downloadMatrixDriver"
 Cohesion: 0.40
 Nodes (6): bindTextureToFrameBuffer(), createBufferFromTexture(), downloadByteEncodedFloatMatrixFromOutputTexture(), downloadMatrixDriver(), downloadMatrixFromPackedTexture(), unbindTextureToFrameBuffer()
 
-### Community 63 - "static_face_api_js_f related"
+### Community 67 - "find"
 Cohesion: 0.33
-Nodes (6): columnNames(), getBoolean(), makeDataElement(), maybeReadHeaderLine(), parseRow(), setColumnNames()
+Nodes (6): checkKeyAndValueTensor(), dN(), find(), findWithDefault(), getHashTableHandleByName(), import()
 
-### Community 64 - "static_face_api_js_f related"
+### Community 68 - "contextIdforContexts"
 Cohesion: 0.33
 Nodes (6): contextIdforContexts(), currentContext(), enterFrame(), generateCurrentContextIds(), newFrame(), nextIteration()
 
-### Community 65 - "static_face_api_js_f related"
-Cohesion: 0.33
-Nodes (6): fi(), jg(), jP(), Qv(), vP(), Xp()
-
-### Community 66 - "static_face_api_js_f related"
-Cohesion: 0.47
-Nodes (6): L2(), poolingFunction(), rj(), uC(), wa(), Zf()
-
-### Community 67 - "static_face_api_js_f related"
-Cohesion: 0.50
-Nodes (5): checkCompileCompletion(), checkCompileCompletionAsync(), checkCompletion_(), checkCompletionAsync_(), s0()
-
-### Community 68 - "static_face_api_js_f related"
-Cohesion: 0.40
-Nodes (5): getClassName(), o0(), toJSON(), updatedConfig(), ys()
-
-### Community 69 - "static_face_api_js_f related"
+### Community 69 - "getNodeAtIndex"
 Cohesion: 0.40
 Nodes (5): getInputAt(), getNodeAtIndex(), getOutputAt(), input(), output()
 
-### Community 70 - "static_face_api_js_f related"
+### Community 70 - "Nr"
 Cohesion: 0.50
 Nodes (5): getLossIdentifiers(), getMetricIdentifiers(), getTrainingConfig(), Nr(), qx()
 
-### Community 71 - "static_face_api_js_f related"
-Cohesion: 0.40
-Nodes (5): Lc(), lN(), ns(), uP(), yn()
-
-### Community 72 - "static_face_api_js_f related"
+### Community 71 - "aC"
 Cohesion: 0.50
 Nodes (4): aC(), lq(), rC(), wH()
 
-### Community 73 - "static_face_api_js_f related"
+### Community 72 - "addItemToPoll"
 Cohesion: 0.50
 Nodes (4): addItemToPoll(), createAndWaitForFence(), pollFence(), pollItems()
 
-### Community 74 - "static_face_api_js_f related"
+### Community 73 - "b2"
 Cohesion: 0.67
 Nodes (4): b2(), f2(), g2(), y2()
 
-### Community 75 - "static_face_api_js_f related"
-Cohesion: 0.67
-Nodes (4): clipAtImageBorders(), dP(), floor(), getInput()
-
-### Community 76 - "static_face_api_js_f related"
+### Community 74 - "i2"
 Cohesion: 0.50
-Nodes (4): convertTensorMapToTensorsMap(), loadStreaming(), loadSync(), loadWithWeightMap()
+Nodes (4): i2(), jB(), s2(), u2()
 
-### Community 77 - "static_face_api_js_f related"
-Cohesion: 0.50
-Nodes (4): create(), start(), v8(), w8()
-
-### Community 78 - "static_face_api_js_f related"
+### Community 75 - "serialForEach"
 Cohesion: 0.50
 Nodes (4): resolveWhile(), serial(), serialForEach(), serialMapAsync()
 
-### Community 79 - "static_face_api_js_f related"
+### Community 78 - "extractBoxes"
+Cohesion: 1.00
+Nodes (3): array(), extractBoxes(), extractPredictedClass()
+
+### Community 79 - "assertIsValidBox"
 Cohesion: 0.67
 Nodes (3): assertIsValidBox(), assertIsValidLabeledBox(), isRect()
 
-### Community 80 - "static_face_api_js_f related"
+### Community 80 - "O1"
 Cohesion: 0.67
 Nodes (3): c6(), e6(), O1()
 
-### Community 81 - "static_face_api_js_f related"
+### Community 81 - "matchDescriptor"
 Cohesion: 0.67
 Nodes (3): computeMeanDistance(), findBestMatch(), matchDescriptor()
 
-### Community 82 - "static_face_api_js_f related"
+### Community 82 - "p4"
 Cohesion: 0.67
 Nodes (3): d2(), l4(), p4()
 
-### Community 83 - "static_face_api_js_f related"
-Cohesion: 0.67
-Nodes (3): Dv(), pN(), qM()
-
-### Community 84 - "static_face_api_js_f related"
-Cohesion: 0.67
-Nodes (3): EM(), L1(), Ov()
-
-### Community 85 - "static_face_api_js_f related"
+### Community 83 - "R1"
 Cohesion: 0.67
 Nodes (3): i6(), R1(), s6()
 
-### Community 86 - "static_face_api_js_f related"
+### Community 84 - "rescale"
 Cohesion: 0.67
 Nodes (3): ig(), relativeBox(), rescale()
 
-### Community 87 - "static_face_api_js_f related"
+### Community 85 - "M1"
 Cohesion: 0.67
 Nodes (3): M1(), n6(), t6()
 
-### Community 88 - "static_face_api_js_f related"
+### Community 86 - "vF"
 Cohesion: 0.67
 Nodes (3): _re(), vF(), Xae()
 
-### Community 89 - "static_face_api_js_f related"
-Cohesion: 0.67
-Nodes (3): W1(), x8(), y8()
-
 ## Knowledge Gaps
-- **41 isolated node(s):** `extends`, `./.svelte-kit/tsconfig.json`, `allowJs`, `checkJs`, `esModuleInterop` (+36 more)
+- **56 isolated node(s):** `auth`, `allowJs`, `checkJs`, `esModuleInterop`, `forceConsistentCasingInFileNames` (+51 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **14 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **18 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `data()` connect `navigation related` to `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`?**
-  _High betweenness centrality (0.077) - this node is a cross-community bridge._
-- **Why does `get()` connect `static_face_api_js_f related` to `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`?**
-  _High betweenness centrality (0.009) - this node is a cross-community bridge._
-- **Why does `push()` connect `static_face_api_js_f related` to `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `navigation related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`, `static_face_api_js_f related`?**
-  _High betweenness centrality (0.005) - this node is a cross-community bridge._
+- **Why does `data()` connect `data` to `face-api.js`, `r`, `find`, `push`, `read`, `je`, `throwIfDisposed`, `extractBoxes`, `admin/siswa/+page.svelte`, `dispose`, `forwardInput`, `xe`, `lj`, `siswa/absensi/+page.svelte`, `then`, `now`, `setWeights`?**
+  _High betweenness centrality (0.093) - this node is a cross-community bridge._
+- **Why does `siswa/absensi/+page.svelte` connect `siswa/absensi/+page.svelte` to `toast.js`, `$lib/stores/auth.js`, `data`?**
+  _High betweenness centrality (0.058) - this node is a cross-community bridge._
+- **Why does `routes/+page.svelte` connect `$lib/stores/auth.js` to `data`?**
+  _High betweenness centrality (0.010) - this node is a cross-community bridge._
 - **Are the 113 inferred relationships involving `r()` (e.g. with `Aa()` and `abs()`) actually correct?**
   _`r()` has 113 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `extends`, `./.svelte-kit/tsconfig.json`, `allowJs` to the rest of the system?**
-  _41 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `static_face_api_js_f related` be split into smaller, more focused modules?**
-  _Cohesion score 0.006802721088435374 - nodes in this community are weakly interconnected._
-- **Should `static_face_api_js_f related` be split into smaller, more focused modules?**
-  _Cohesion score 0.05501717684458801 - nodes in this community are weakly interconnected._
+- **What connects `auth`, `allowJs`, `checkJs` to the rest of the system?**
+  _56 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `face-api.js` be split into smaller, more focused modules?**
+  _Cohesion score 0.00684931506849315 - nodes in this community are weakly interconnected._
+- **Should `r` be split into smaller, more focused modules?**
+  _Cohesion score 0.053855134257144305 - nodes in this community are weakly interconnected._

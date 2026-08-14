@@ -1,0 +1,9 @@
+# Graphify ignore patterns
+static/face-api/
+static/face-api/js/
+static/face-api/model/
+.svelte-kit/
+node_modules/
+.git/
+dist/
+build/

@@ -2,11 +2,12 @@
 	import { onMount } from 'svelte';
 	import { auth } from '$lib/stores/auth.js';
 	import { supabase } from '$lib/supabase.js';
+	import Skeleton from '$lib/components/Skeleton.svelte';
 
 	let Chart;
 
 	let loading = $state(true);
-	let stats = $state({ siswa: 0, guru: 0, dudi: 0, perusahaan: 0, penempatan: 0 });
+	let stats = $state({ siswa: 0, guru: 0, dudi: 0, perusahaan: 0, penempatan: 0, absensiToday: 0 });
 	let chartCanvas = $state(null);
 	let pieCanvas = $state(null);
 
@@ -15,20 +16,26 @@
 		Chart = chartModule.default;
 
 		if ($auth.profile?.role === 'admin') {
+			const today = new Date().toISOString().split('T')[0];
+
 			// Fetch counts
 			const pSiswa = supabase.from('siswa').select('id', { count: 'exact', head: true });
 			const pGuru = supabase.from('guru_pembimbing').select('id', { count: 'exact', head: true });
 			const pDudi = supabase.from('pembimbing_industri').select('id', { count: 'exact', head: true });
 			const pPerusahaan = supabase.from('perusahaan').select('id', { count: 'exact', head: true });
 			const pPenempatan = supabase.from('penempatan').select('id', { count: 'exact', head: true });
+			const pAbsensi = supabase.from('absensi_pkl').select('id', { count: 'exact', head: true }).eq('tanggal', today);
 
-			const [resSiswa, resGuru, resDudi, resPeru, resPene] = await Promise.all([pSiswa, pGuru, pDudi, pPerusahaan, pPenempatan]);
+			const [resSiswa, resGuru, resDudi, resPeru, resPene, resAbsen] = await Promise.all([
+				pSiswa, pGuru, pDudi, pPerusahaan, pPenempatan, pAbsensi
+			]);
 
 			stats.siswa = resSiswa.count || 0;
 			stats.guru = resGuru.count || 0;
 			stats.dudi = resDudi.count || 0;
 			stats.perusahaan = resPeru.count || 0;
 			stats.penempatan = resPene.count || 0;
+			stats.absensiToday = resAbsen.count || 0;
 
 			// Render Charts
 			setTimeout(() => {
@@ -39,33 +46,45 @@
 	});
 
 	function renderCharts() {
-		if (chartCanvas) {
+		if (chartCanvas && Chart) {
 			new Chart(chartCanvas, {
 				type: 'bar',
 				data: {
-					labels: ['Siswa', 'Guru', 'Perusahaan', 'Penempatan'],
+					labels: ['Siswa', 'Guru', 'DUDI', 'Perusahaan', 'Penempatan'],
 					datasets: [{
-						label: 'Total Entitas',
-						data: [stats.siswa, stats.guru, stats.perusahaan, stats.penempatan],
+						label: 'Total Entitas Terdaftar',
+						data: [stats.siswa, stats.guru, stats.dudi, stats.perusahaan, stats.penempatan],
 						backgroundColor: [
-							'rgba(0, 153, 153, 0.7)',
-							'rgba(11, 43, 43, 0.7)',
-							'rgba(212, 175, 55, 0.7)',
-							'rgba(5, 150, 105, 0.7)'
+							'#0ea5e9', // Sky Blue
+							'#0f766e', // Deep Teal
+							'#f59e0b', // Amber
+							'#8b5cf6', // Purple
+							'#10b981'  // Emerald
 						],
 						borderWidth: 0,
-						borderRadius: 4
+						borderRadius: 6
 					}]
 				},
 				options: {
 					responsive: true,
 					maintainAspectRatio: false,
-					plugins: { legend: { display: false } }
+					plugins: { 
+						legend: { display: false } 
+					},
+					scales: {
+						y: {
+							beginAtZero: true,
+							grid: { color: 'rgba(255, 255, 255, 0.05)' }
+						},
+						x: {
+							grid: { display: false }
+						}
+					}
 				}
 			});
 		}
 
-		if (pieCanvas) {
+		if (pieCanvas && Chart) {
 			const belumDitempatkan = Math.max(0, stats.siswa - stats.penempatan);
 			new Chart(pieCanvas, {
 				type: 'doughnut',
@@ -74,8 +93,8 @@
 					datasets: [{
 						data: [stats.penempatan, belumDitempatkan],
 						backgroundColor: [
-							'#009999',
-							'#e2e8f0'
+							'#0ea5e9',
+							'#334155'
 						],
 						borderWidth: 0
 					}]
@@ -83,7 +102,13 @@
 				options: {
 					responsive: true,
 					maintainAspectRatio: false,
-					cutout: '75%'
+					cutout: '75%',
+					plugins: {
+						legend: {
+							position: 'bottom',
+							labels: { boxWidth: 12, font: { size: 11 } }
+						}
+					}
 				}
 			});
 		}
@@ -96,15 +121,22 @@
 
 <div class="page-header">
 	<h1>Dashboard Administrator</h1>
-	<p>Kelola master data, penempatan PKL, dan registrasi wajah siswa.</p>
+	<p>Kelola master data, penempatan PKL, registrasi biometrik wajah, dan pemantauan real-time.</p>
 </div>
 
 {#if loading}
-	<div style="display: flex; justify-content: center; padding: var(--space-2xl);">
-		<div class="spinner spinner-lg"></div>
+	<div class="stats-grid mb-xl">
+		<Skeleton variant="card" />
+		<Skeleton variant="card" />
+		<Skeleton variant="card" />
+		<Skeleton variant="card" />
+	</div>
+	<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-md);">
+		<Skeleton variant="card" />
+		<Skeleton variant="card" />
 	</div>
 {:else}
-	<div class="stats-grid mb-xl">
+	<div class="stats-grid mb-xl" style="grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));">
 		<div class="stat-card">
 			<div class="stat-value text-accent">{stats.siswa}</div>
 			<div class="stat-label">Siswa PKL</div>
@@ -121,23 +153,26 @@
 			<div class="stat-value">{stats.guru}</div>
 			<div class="stat-label">Guru Pembimbing</div>
 		</div>
+		<div class="stat-card">
+			<div class="stat-value" style="color: var(--color-hadir);">{stats.absensiToday}</div>
+			<div class="stat-label">Absensi Hari Ini</div>
+		</div>
 	</div>
 
 	<!-- Chart Section -->
 	<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-md);" class="mb-lg">
 		<div class="card">
 			<h3 style="margin-bottom: var(--space-md); font-size: 1rem;">Statistik Data Utama</h3>
-			<div style="position: relative; height: 250px;">
+			<div style="position: relative; height: 260px;">
 				<canvas bind:this={chartCanvas}></canvas>
 			</div>
 		</div>
 		
 		<div class="card">
 			<h3 style="margin-bottom: var(--space-md); font-size: 1rem;">Status Penempatan Siswa</h3>
-			<div style="position: relative; height: 250px; display: flex; align-items: center; justify-content: center;">
+			<div style="position: relative; height: 260px; display: flex; align-items: center; justify-content: center;">
 				<canvas bind:this={pieCanvas}></canvas>
-				<!-- Inner Text for Doughnut -->
-				<div style="position: absolute; text-align: center; pointer-events: none;">
+				<div style="position: absolute; text-align: center; pointer-events: none; margin-bottom: 25px;">
 					<div style="font-size: 1.5rem; font-weight: 700; color: var(--accent);">{stats.penempatan}</div>
 					<div style="font-size: 0.7rem; color: var(--fg-muted);">Ditempatkan</div>
 				</div>
@@ -146,11 +181,20 @@
 	</div>
 
 	<div class="card mb-lg">
-		<h3 style="margin-bottom: var(--space-md);">Shortcut Aksi</h3>
+		<h3 style="margin-bottom: var(--space-md);">Aksi Cepat & Navigasi Utama</h3>
 		<div style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
-			<a href="/admin/absensi-wajah" class="btn btn-primary">Registrasi Wajah Siswa</a>
-			<a href="/admin/penempatan" class="btn btn-secondary">Kelola Penempatan</a>
-			<a href="/admin/siswa" class="btn btn-ghost">Master Data Siswa</a>
+			<a href="/admin/monitor-tv" class="btn btn-primary">
+				📺 Buka TV Monitor Command Center
+			</a>
+			<a href="/admin/absensi-wajah" class="btn btn-secondary">
+				👤 Registrasi Biometrik Wajah
+			</a>
+			<a href="/admin/penempatan" class="btn btn-ghost">
+				📌 Kelola Penempatan DUDI
+			</a>
+			<a href="/admin/siswa" class="btn btn-ghost">
+				🎓 Master Siswa & Import Excel
+			</a>
 		</div>
 	</div>
 {/if}
