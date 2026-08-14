@@ -418,6 +418,7 @@ a:hover { color: var(--accent-deep); }
 .table-wrapper {
   width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border: 1px solid var(--border);
 }
 
@@ -587,6 +588,7 @@ tbody td {
 .app-shell {
   display: flex;
   min-height: 100vh;
+  position: relative;
 }
 
 .sidebar {
@@ -606,12 +608,20 @@ tbody td {
 
 .sidebar-hidden { transform: translateX(-100%); }
 
-.main-content {
-  margin-left: var(--sidebar-width);
+.main-wrapper {
   flex: 1;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+  transition: margin-left 500ms ease-out;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* Important for scrollable content within flex */
 }
 
 .navbar {
@@ -625,6 +635,10 @@ tbody td {
   top: 0;
   z-index: 40;
   backdrop-filter: blur(8px);
+}
+
+.mobile-menu-btn {
+  display: none !important; /* Hidden on desktop */
 }
 
 .page-content {
@@ -778,7 +792,7 @@ tbody td {
 @media (max-width: 768px) {
   :root {
     --sidebar-width: 0px;
-    --navbar-height: 56px;
+    --navbar-height: 64px; /* Slightly taller for easy tapping */
   }
 
   .sidebar {
@@ -791,8 +805,20 @@ tbody td {
     box-shadow: var(--shadow-lg);
   }
 
-  .main-content {
+  .main-wrapper {
     margin-left: 0;
+  }
+
+  .navbar {
+    padding: 0 var(--space-md);
+  }
+
+  .mobile-menu-btn {
+    display: flex !important; /* Show on mobile */
+  }
+
+  .navbar-title {
+    display: none; /* Hide profile name on mobile header to save space */
   }
 
   .page-content {

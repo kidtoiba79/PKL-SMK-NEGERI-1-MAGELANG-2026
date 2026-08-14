@@ -1,8 +1,7 @@
 <script>
 	import { page } from '$app/stores';
 	import { auth } from '$lib/stores/auth.js';
-	
-	let isOpen = $state(false);
+	let { isOpen = false, onClose } = $props();
 
 	// Menu list berdasarkan role
 	let menus = $derived.by(() => {
@@ -31,10 +30,6 @@
 		return base;
 	});
 
-	function toggleSidebar() {
-		isOpen = !isOpen;
-	}
-
 	function handleSignOut() {
 		auth.signOut();
 	}
@@ -51,7 +46,7 @@
 		<span class="label-overline" style="padding: 0 var(--space-xl); margin-bottom: 0.5rem; color: rgba(255,255,255,0.4);">Menu Utama</span>
 		
 		{#each menus as menu}
-			<a href={menu.path} class="nav-item {$page.url.pathname === menu.path ? 'active' : ''}" onclick={() => isOpen = false}>
+			<a href={menu.path} class="nav-item {$page.url.pathname === menu.path ? 'active' : ''}" onclick={onClose}>
 				<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d={menu.icon}></path></svg>
 				{menu.label}
 			</a>
@@ -70,16 +65,5 @@
 
 <!-- Mobile Overlay -->
 {#if isOpen}
-	<div class="modal-overlay" style="z-index: 45;" onclick={toggleSidebar} role="presentation"></div>
+	<div class="modal-overlay" style="z-index: 45;" onclick={onClose} role="presentation"></div>
 {/if}
-
-<!-- Navbar Header (Mobile Toggle) -->
-<header class="navbar" style="justify-content: space-between;">
-	<button class="btn-ghost" style="border: none; padding: 0.5rem; display: flex;" onclick={toggleSidebar} aria-label="Toggle Menu">
-		<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-	</button>
-	
-	<div style="font-size: 0.8rem; font-weight: 500;">
-		{$auth.profile?.nama || ''} 
-	</div>
-</header>
