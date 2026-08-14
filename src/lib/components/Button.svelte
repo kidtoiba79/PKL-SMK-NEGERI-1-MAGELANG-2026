@@ -9,6 +9,7 @@
 	 * @property {string} [class] - Custom classes to append
 	 * @property {import('svelte').Snippet} [children]
 	 * @property {Function} [onclick]
+	 * @property {string} [href]
 	 */
 
 	/** @type {Props} */
@@ -18,6 +19,7 @@
 		fullWidth = false,
 		type = 'button',
 		disabled = false,
+		href,
 		class: className = '',
 		children,
 		onclick
@@ -32,13 +34,21 @@
 	].filter(Boolean).join(' '));
 </script>
 
-<button
-	{type}
-	class={btnClass}
-	{disabled}
-	{onclick}
->
-	<span>
-		{@render children?.()}
-	</span>
-</button>
+{#if href}
+	<a {href} class={btnClass} {onclick}>
+		<span>
+			{@render children?.()}
+		</span>
+	</a>
+{:else}
+	<button
+		{type}
+		class={btnClass}
+		{disabled}
+		{onclick}
+	>
+		<span>
+			{@render children?.()}
+		</span>
+	</button>
+{/if}

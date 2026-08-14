@@ -25,6 +25,7 @@
 			base.push({ path: '/admin/perusahaan', label: 'Data Perusahaan', icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4' });
 			base.push({ path: '/admin/penempatan', label: 'Penempatan PKL', icon: 'M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4' });
 			base.push({ path: '/admin/absensi-wajah', label: 'Face Registration', icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4' });
+			base.push({ path: '/admin/monitor-tv', label: 'Monitor TV', icon: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' });
 		}
 
 		return base;

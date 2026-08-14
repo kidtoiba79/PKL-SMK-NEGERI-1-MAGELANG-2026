@@ -120,12 +120,12 @@
 			const detections = await detectFaces(canvasElement);
 			
 			if (detections.length === 0) {
-				toast.error('Wajah tidak terdeteksi. Pastikan pencahayaan cukup.');
+				statusMsg = 'Wajah tidak terdeteksi. Posisikan wajah di kamera.';
 				isProcessingFace = false;
 				return;
 			}
 			if (detections.length > 1) {
-				toast.error('Terdeteksi lebih dari 1 wajah. Pastikan hanya Anda di kamera.');
+				statusMsg = 'Terdeteksi lebih dari 1 wajah. Pastikan hanya Anda di kamera.';
 				isProcessingFace = false;
 				return;
 			}
@@ -134,7 +134,7 @@
 			
 			// Liveness Check: Senyum (happy) > 0.6
 			if (!detection.expressions.happy || detection.expressions.happy < 0.6) {
-				toast.warning('Liveness gagal: Silakan SENYUM ke kamera untuk absen.');
+				statusMsg = 'Liveness gagal: Silakan SENYUM 😃 ke kamera untuk absen.';
 				isProcessingFace = false;
 				return;
 			}
@@ -144,7 +144,7 @@
 			const { match, distance } = matchFace(detection.descriptor, userFaceProfile, 0.45); // threshold 0.45 (ketat)
 
 			if (!match) {
-				toast.error('Wajah tidak cocok dengan profil Anda! Jarak: ' + distance.toFixed(2));
+				statusMsg = 'Wajah tidak cocok! (Jarak: ' + distance.toFixed(2) + ')';
 				isProcessingFace = false;
 				return;
 			}

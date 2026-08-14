@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { auth } from '$lib/stores/auth.js';
 	import { supabase } from '$lib/supabase.js';
+	import Button from '$lib/components/Button.svelte';
 
 	let perusahaans = $state([]);
 	let loading = $state(true);
@@ -19,9 +20,14 @@
 	<title>Data Perusahaan | SiPKL Admin</title>
 </svelte:head>
 
-<div class="page-header">
-	<h1>Master Data Perusahaan</h1>
-	<p>Daftar titik lokasi DUDI (Dunia Usaha Dunia Industri) untuk Geotagging</p>
+<div class="page-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+	<div>
+		<h1>Master Data Perusahaan</h1>
+		<p>Daftar titik lokasi DUDI (Dunia Usaha Dunia Industri) untuk Geotagging</p>
+	</div>
+	<div class="actions">
+		<Button variant="primary" href="/admin/perusahaan/peta">📍 Set Titik Lokasi Peta</Button>
+	</div>
 </div>
 
 <div class="card">

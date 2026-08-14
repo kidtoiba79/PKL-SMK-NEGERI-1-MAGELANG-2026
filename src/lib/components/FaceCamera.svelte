@@ -18,6 +18,7 @@
 	let canvasElement;
 	let stream;
 	let isCameraReady = $state(false);
+	let autoCaptureInterval;
 
 	onMount(async () => {
 		try {
@@ -29,6 +30,8 @@
 				videoElement.onloadedmetadata = () => {
 					videoElement.play();
 					isCameraReady = true;
+					// Mulai auto capture
+					autoCaptureInterval = setInterval(capture, 1500);
 				};
 			}
 		} catch (error) {
@@ -37,6 +40,7 @@
 	});
 
 	onDestroy(() => {
+		if (autoCaptureInterval) clearInterval(autoCaptureInterval);
 		if (stream) {
 			stream.getTracks().forEach(track => track.stop());
 		}
@@ -66,12 +70,10 @@
 	{/if}
 
 	{#if isCameraReady && !isProcessing}
-		<div style="position: absolute; bottom: 1.5rem; left: 0; right: 0; display: flex; justify-content: center;">
-			<button 
-				onclick={capture}
-				style="width: 4rem; height: 4rem; border-radius: 50%; background: var(--accent); border: 3px solid white; cursor: pointer; box-shadow: var(--shadow-lg);"
-				aria-label="Ambil Foto Absensi"
-			></button>
+		<div style="position: absolute; bottom: 1.5rem; left: 0; right: 0; text-align: center; pointer-events: none;">
+			<span class="badge badge-success" style="font-size: 0.8rem; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+				🤖 Pemindaian Wajah Otomatis Aktif
+			</span>
 		</div>
 	{/if}
 

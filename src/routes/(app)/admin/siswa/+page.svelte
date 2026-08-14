@@ -4,6 +4,7 @@
 	import { supabase } from '$lib/supabase.js';
 	import { toast } from '$lib/stores/toast.js';
 	import { exportToExcel, importFromExcel, SISWA_TEMPLATE } from '$lib/excelHelper.js';
+	import { geocodeAddress } from '$lib/geocoder.js';
 	import Button from '$lib/components/Button.svelte';
 
 	let siswas = $state([]);
@@ -102,9 +103,26 @@
 					if (existingPerusahaan) {
 						perusahaanId = existingPerusahaan.id;
 					} else {
-						// Buat baru
+						// Buat baru (dengan auto-geocoding)
+						const alamatPkl = row['Alamat PKL'] || 'Belum diisi';
+						let lat = null, lng = null;
+						
+						// Coba geocode jika ada alamat
+						if (alamatPkl !== 'Belum diisi') {
+							const coords = await geocodeAddress(alamatPkl);
+							if (coords) {
+								lat = coords.lat;
+								lng = coords.lng;
+							}
+						}
+
 						const { data: newPerusahaan, error: errP } = await supabase.from('perusahaan')
-							.insert([{ nama: namaPkl, alamat: row['Alamat PKL'] || 'Belum diisi' }]).select('id').single();
+							.insert([{ 
+								nama: namaPkl, 
+								alamat: alamatPkl,
+								lat: lat,
+								lng: lng
+							}]).select('id').single();
 						if (errP) console.error("Gagal buat perusahaan", errP);
 						else perusahaanId = newPerusahaan.id;
 					}

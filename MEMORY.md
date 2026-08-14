@@ -4,7 +4,7 @@
 - **Name**: Sistem Informasi PKL (SiPKL) SMK Negeri 1 Magelang
 - **Stack**: SvelteKit (Vite), Supabase (PostgreSQL + Storage), Vanilla CSS
 - **Design Philosophy**: Luxury, Editorial, Modern (Color Palette: Biru Tosca/Sky Blue `#0ea5e9`, Dark Surface `#1e293b`).
-- **Core Features**: Geofenced Attendance (500m radius), Face Recognition (Liveness/Smile check) using `face-api.js`, Daily Journals, PDF Report generation, and 4-tier Role Management (Siswa, Guru, DUDI/Perusahaan, Admin).
+- **Core Features**: Geofenced Attendance dengan Visual Map, Face Recognition Liveness (Auto-capture), Live TV Monitor Command Center, Daily Journals, PDF Report, dan Role Management (Siswa, Guru, DUDI/Perusahaan, Admin).
 - **GitHub Repository**: `https://github.com/kidtoiba79/PKL-SMK-NEGERI-1-MAGELANG-2026.git`
 
 ## 2. Supabase Infrastructure
@@ -27,11 +27,12 @@
 11. `face_profiles`: JSONB descriptors for student face biometrics (no images stored).
 
 ## 4. Key AI / Logic Workflows
-- **Face Recognition**: Handled locally on the client using `face-api.js` (weights loaded from `/static/face-api/model`). 
+- **Face Recognition**: Handled locally on the client using `face-api.js`. 
   - *Registration (Admin)*: Extracts numerical descriptors and saves them to `face_profiles`.
-  - *Attendance (Siswa)*: Captures frame, extracts descriptor, calculates Euclidean distance against saved profile. Checks for a "smile" expression for liveness verification.
-- **Geofencing**: Uses Haversine formula (`src/lib/utils/haversine.js`) to ensure student is within company radius before allowing check-in.
-- **Time Validation**: Enforces check-in (06:00 - 09:00) and check-out (14:00 - 18:00) via `src/lib/utils/timeValidator.js`.
+  - *Attendance (Siswa)*: Auto-capture frame, checks liveness (smile > 0.6), matches Euclidean distance, and auto-submits without button clicks.
+- **Geofencing & Visual Map**: Uses Haversine formula to validate radius. Enhanced with `Leaflet.js` for interactive Map verifications and `Nominatim OpenStreetMap` for auto-geocoding Excel uploads.
+- **TV Command Center**: Admin dashboard specifically designed for large TV screens, featuring dark mode map and live auto-refreshing attendance feed.
+- **Time Validation**: Enforces check-in (06:00 - 09:00) and check-out (14:00 - 18:00).
 
 ## 5. File Structure Highlights
 - `/src/routes/(app)/`: Authenticated layouts and dashboards.
