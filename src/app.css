@@ -43,7 +43,7 @@
   --color-reject:  #DC2626;
 
   /* === TYPOGRAPHY === */
-  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-heading: 'Inter', system-ui, sans-serif; /* Mengikuti gaya modern login */
   --font-body:    'Inter', system-ui, sans-serif;
 
   /* === SPACING === */

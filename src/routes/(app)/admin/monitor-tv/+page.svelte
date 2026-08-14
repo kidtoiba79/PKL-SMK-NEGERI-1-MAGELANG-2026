@@ -111,9 +111,14 @@
 	<!-- Panel Kanan: Sidebar Informasi -->
 	<div class="tv-sidebar">
 		<div class="tv-header">
-			<div class="logo">
-				<h2>SiPKL Command Center</h2>
-				<p>SMK Negeri 1 Magelang</p>
+			<div class="logo" style="display: flex; align-items: center; gap: 1rem;">
+				<a href="/admin" class="btn-back" title="Kembali ke Dashboard">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+				</a>
+				<div>
+					<h2>SiPKL Command Center</h2>
+					<p>SMK Negeri 1 Magelang</p>
+				</div>
 			</div>
 			<div class="clock">
 				<div class="time">{currentTime.toLocaleTimeString('id-ID')}</div>
@@ -162,6 +167,9 @@
 	:global(.tv-mode .sidebar), :global(.tv-mode .navbar) {
 		display: none !important;
 	}
+	:global(.tv-mode .main-wrapper) {
+		margin-left: 0 !important;
+	}
 	:global(.tv-mode .main-content) {
 		margin: 0 !important;
 		padding: 0 !important;
@@ -170,7 +178,7 @@
 	.tv-layout {
 		display: flex;
 		height: 100vh;
-		width: 100vw;
+		width: 100%;
 		overflow: hidden;
 		background: #000;
 	}
@@ -184,46 +192,63 @@
 
 	.tv-sidebar {
 		width: 450px;
-		background: rgba(15, 23, 42, 0.95); /* Tailwind slate-900 */
-		color: white;
+		background: rgba(11, 43, 43, 0.95); /* Deep Teal */
+		color: var(--fg-inverted);
 		display: flex;
 		flex-direction: column;
-		border-left: 2px solid #1e293b;
+		border-left: 2px solid rgba(255, 255, 255, 0.08);
 		box-shadow: -10px 0 30px rgba(0,0,0,0.5);
 		z-index: 10;
 	}
 
 	.tv-header {
 		padding: 1.5rem;
-		border-bottom: 1px solid #334155;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
-		background: #0f172a;
+		background: var(--bg-dark);
 	}
 
-	.tv-header h2 { margin: 0; color: #38bdf8; font-size: 1.5rem; font-weight: 700; letter-spacing: 1px;}
-	.tv-header p { margin: 0; color: #94a3b8; font-size: 0.9rem;}
+	.tv-header h2 { margin: 0; color: var(--accent); font-size: 1.5rem; font-weight: 700; letter-spacing: 1px;}
+	.tv-header p { margin: 0; color: var(--fg-muted); font-size: 0.9rem;}
+
+	.btn-back {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+		border-radius: 8px;
+		background: rgba(0, 153, 153, 0.1);
+		color: var(--accent);
+		text-decoration: none;
+		transition: all 0.2s;
+	}
+	.btn-back:hover {
+		background: var(--accent);
+		color: var(--fg-inverted);
+	}
 
 	.clock {
-		background: #1e293b;
+		background: rgba(255, 255, 255, 0.03);
 		padding: 1rem;
 		border-radius: 8px;
 		text-align: center;
-		border: 1px solid #334155;
+		border: 1px solid rgba(255, 255, 255, 0.08);
 	}
-	.time { font-size: 2.5rem; font-weight: 700; color: #f8fafc; font-variant-numeric: tabular-nums; }
-	.date { color: #94a3b8; font-size: 0.9rem; margin-top: 5px; }
+	.time { font-size: 2.5rem; font-weight: 700; color: var(--fg-inverted); font-variant-numeric: tabular-nums; }
+	.date { color: var(--fg-muted); font-size: 0.9rem; margin-top: 5px; }
 
 	.live-feed-title {
 		padding: 1rem 1.5rem;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		background: #1e293b;
-		border-bottom: 1px solid #334155;
+		background: rgba(255, 255, 255, 0.03);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 	}
-	.live-feed-title h3 { margin: 0; font-size: 1.1rem; color: #f8fafc; }
+	.live-feed-title h3 { margin: 0; font-size: 1.1rem; color: var(--fg-inverted); }
 
 	.feed-container {
 		flex: 1;
@@ -238,8 +263,8 @@
 	.feed-container::-webkit-scrollbar { width: 0px; }
 
 	.feed-card {
-		background: #1e293b;
-		border: 1px solid #334155;
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
 		border-radius: 8px;
 		padding: 1rem;
 		display: flex;
@@ -249,25 +274,25 @@
 		transition: all 0.2s;
 	}
 	.feed-card:hover {
-		background: #334155;
+		background: rgba(255, 255, 255, 0.08);
 		transform: translateX(-5px);
-		border-color: #38bdf8;
+		border-color: var(--accent);
 	}
 
 	.feed-time {
 		font-size: 1.2rem;
 		font-weight: bold;
-		color: #38bdf8;
+		color: var(--accent);
 		padding-right: 1rem;
-		border-right: 1px solid #334155;
+		border-right: 1px solid rgba(255, 255, 255, 0.08);
 	}
 
 	.feed-content { flex: 1; }
 	
 	.feed-action .btn-map {
-		background: rgba(56, 189, 248, 0.1);
-		border: 1px solid rgba(56, 189, 248, 0.3);
-		color: #38bdf8;
+		background: rgba(0, 153, 153, 0.1);
+		border: 1px solid rgba(0, 153, 153, 0.3);
+		color: var(--accent);
 		font-size: 1.5rem;
 		width: 40px; height: 40px;
 		border-radius: 50%;
@@ -276,6 +301,34 @@
 		transition: all 0.2s;
 	}
 	.feed-card:hover .btn-map {
-		background: #38bdf8; color: white;
+		background: var(--accent); color: var(--fg-inverted);
+	}
+
+	/* RESPONSIVE LAYOUT */
+	@media (max-width: 900px) {
+		.tv-layout {
+			flex-direction: column;
+		}
+		.tv-map-container {
+			flex: 1;
+			min-height: 40vh; /* Peta memakan 40% layar di HP */
+		}
+		.tv-sidebar {
+			width: 100%;
+			flex: 1.5; /* Sidebar list absensi memakan sisa layar */
+			border-left: none;
+			border-top: 2px solid rgba(255, 255, 255, 0.08);
+		}
+		.tv-header {
+			padding: 1rem;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+		}
+		.clock {
+			padding: 0.5rem;
+		}
+		.time { font-size: 1.5rem; }
+		.date { display: none; /* Sembunyikan tanggal agar tidak sesak */ }
 	}
 </style>

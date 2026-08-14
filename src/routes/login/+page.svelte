@@ -68,6 +68,7 @@
 
 			<div class="form-content">
 				<div class="brand">
+					<img src="/logo.png" alt="Logo SiPKL" style="width: 48px; height: 48px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
 					<h1>SiPKL</h1>
 					<div class="brand-divider"></div>
 					<div class="brand-sub">
@@ -119,32 +120,7 @@
 
 			<!-- Center Icon Illustration -->
 			<div class="illustration">
-				<!-- Custom Icon mimicking the medical one, but geared towards education/industry -->
-				<svg width="180" height="180" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<!-- Shield/Gear Hybrid Background -->
-					<path d="M100 20 L160 40 L150 120 C140 160 100 180 100 180 C100 180 60 160 50 120 L40 40 L100 20 Z" fill="url(#grad-icon-bg)"/>
-					
-					<!-- Circuit/Network Nodes inside -->
-					<circle cx="100" cy="100" r="40" stroke="white" stroke-width="4" stroke-dasharray="8 8"/>
-					<circle cx="100" cy="100" r="20" fill="white"/>
-					<circle cx="70" cy="80" r="8" fill="white"/>
-					<circle cx="130" cy="120" r="8" fill="white"/>
-					<circle cx="130" cy="80" r="8" fill="white"/>
-					<circle cx="70" cy="120" r="8" fill="white"/>
-					
-					<line x1="78" y1="80" x2="122" y2="80" stroke="white" stroke-width="2"/>
-					<line x1="78" y1="120" x2="122" y2="120" stroke="white" stroke-width="2"/>
-					<line x1="70" y1="88" x2="70" y2="112" stroke="white" stroke-width="2"/>
-					<line x1="130" y1="88" x2="130" y2="112" stroke="white" stroke-width="2"/>
-					<line x1="100" y1="100" x2="130" y2="80" stroke="white" stroke-width="2"/>
-					
-					<defs>
-						<linearGradient id="grad-icon-bg" x1="0" y1="0" x2="1" y2="1">
-							<stop offset="0%" stop-color="#009999" />
-							<stop offset="100%" stop-color="#006666" />
-						</linearGradient>
-					</defs>
-				</svg>
+				<img src="/logo.png" alt="SiPKL Logo Besar" style="width: 250px; height: 250px; border-radius: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);" />
 			</div>
 		</div>
 	</div>
