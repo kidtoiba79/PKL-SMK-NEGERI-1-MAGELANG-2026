@@ -1,16 +1,25 @@
 // Minimal Service Worker untuk memenuhi syarat PWA Installability
 self.addEventListener('install', (e) => {
-    // Memaksa SW aktif segera setelah di-install
     self.skipWaiting();
 });
 
 self.addEventListener('activate', (e) => {
-    // Mengambil kontrol halaman secara langsung
     e.waitUntil(clients.claim());
 });
 
 self.addEventListener('fetch', (e) => {
-    // Pass-through: Jangan meng-cache request API atau dynamic routing SvelteKit
-    // Untuk app yang lebih kompleks, Anda bisa meng-cache aset statis di sini.
-    e.respondWith(fetch(e.request));
+    // Abaikan request non-GET (POST, PUT, DELETE) - biarkan langsung ke network
+    if (e.request.method !== 'GET') return;
+
+    // Abaikan request ke Supabase API - tidak boleh di-cache
+    if (e.request.url.includes('supabase.co')) return;
+
+    // Untuk semua GET request: coba network, jika gagal abaikan (jangan error)
+    e.respondWith(
+        fetch(e.request).catch(() => {
+            // Jika network gagal (offline), kembalikan response kosong
+            // agar app tidak crash
+            return new Response('', { status: 503, statusText: 'Offline' });
+        })
+    );
 });
