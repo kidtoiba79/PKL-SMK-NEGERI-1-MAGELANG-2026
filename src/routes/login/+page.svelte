@@ -98,9 +98,9 @@
 					</div>
 
 					<div class="form-links">
-						<a href="#">Lupa Password?</a>
+						<a href="/">Lupa Password?</a>
 						<span class="divider">|</span>
-						<a href="#">Bantuan BKK</a>
+						<a href="/">Bantuan BKK</a>
 					</div>
 
 					<button type="submit" class="btn-submit" disabled={isLoading}>

@@ -2,14 +2,18 @@
 	import { onMount } from 'svelte';
 	import { auth } from '$lib/stores/auth.js';
 	import { supabase } from '$lib/supabase.js';
-	import Chart from 'chart.js/auto';
+
+	let Chart;
 
 	let loading = $state(true);
 	let stats = $state({ siswa: 0, guru: 0, dudi: 0, perusahaan: 0, penempatan: 0 });
-	let chartCanvas;
-	let pieCanvas;
+	let chartCanvas = $state(null);
+	let pieCanvas = $state(null);
 
 	onMount(async () => {
+		const chartModule = await import('chart.js/auto');
+		Chart = chartModule.default;
+
 		if ($auth.profile?.role === 'admin') {
 			// Fetch counts
 			const pSiswa = supabase.from('siswa').select('id', { count: 'exact', head: true });
