@@ -4,7 +4,7 @@ import { env as privateEnv } from '$env/dynamic/private';
 import { json } from '@sveltejs/kit';
 
 export async function POST({ request }) {
-	// Supabase Admin Client (diinisialisasi di dalam fungsi agar dynamic env terbaca saat runtime)
+	// Supabase Admin Client
 	const supabaseAdmin = createClient(
 		publicEnv.PUBLIC_SUPABASE_URL, 
 		privateEnv.SUPABASE_SERVICE_ROLE_KEY, 
@@ -12,16 +12,24 @@ export async function POST({ request }) {
 	);
 
 	try {
-		// 1. Ambil semua siswa yang belum punya akun login
-		const { data: siswas, error: fetchError } = await supabaseAdmin
-			.from('siswa')
-			.select('id, nis, nama')
+		const reqBody = await request.json().catch(() => ({}));
+		const type = reqBody.type || 'siswa'; // default 'siswa'
+
+		let targetTable = type === 'guru' ? 'guru_pembimbing' : 'siswa';
+		let emailDomain = type === 'guru' ? 'guru.smkn1magelang.sch.id' : 'siswa.smkn1magelang.sch.id';
+		let defaultPassword = type === 'guru' ? 'Guru123!' : 'Siswa123!';
+		let targetRole = type === 'guru' ? 'guru' : 'siswa';
+
+		// 1. Ambil semua data target yang belum punya akun login
+		const { data: targets, error: fetchError } = await supabaseAdmin
+			.from(targetTable)
+			.select(type === 'guru' ? 'id, nip, nama' : 'id, nis, nama')
 			.is('user_id', null);
 
 		if (fetchError) throw fetchError;
 
-		if (!siswas || siswas.length === 0) {
-			return json({ success: true, message: 'Semua siswa sudah memiliki akun.', count: 0 });
+		if (!targets || targets.length === 0) {
+			return json({ success: true, message: `Semua ${type} sudah memiliki akun.`, count: 0 });
 		}
 
 		let sukses = 0;
@@ -29,50 +37,55 @@ export async function POST({ request }) {
 		const errors = [];
 
 		// 2. Loop dan buat akun via Admin API resmi
-		for (const siswa of siswas) {
-			const email = `${siswa.nis}@siswa.smkn1magelang.sch.id`;
+		for (const target of targets) {
+			const identifier = type === 'guru' ? target.nip : target.nis;
+			if (!identifier) {
+				gagal++;
+				errors.push(`ID: ${target.id} tidak memiliki identifier (NIP/NIS)`);
+				continue;
+			}
+			
+			const email = `${identifier}@${emailDomain}`;
 			
 			const { data: newUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
 				email: email,
-				password: 'Siswa123!',
-				email_confirm: true, // Auto-confirm email, tidak perlu verifikasi
-				user_metadata: { nama: siswa.nama }
+				password: defaultPassword,
+				email_confirm: true,
+				user_metadata: { nama: target.nama }
 			});
 
 			if (createError) {
-				// Jika email sudah ada, coba fetch user-nya
 				if (createError.message.includes('already registered')) {
 					const { data: { users } } = await supabaseAdmin.auth.admin.listUsers();
 					const existingUser = users.find(u => u.email === email);
 					if (existingUser) {
-						await supabaseAdmin.from('siswa').update({ user_id: existingUser.id }).eq('id', siswa.id);
+						await supabaseAdmin.from(targetTable).update({ user_id: existingUser.id }).eq('id', target.id);
 						sukses++;
 					}
 				} else {
 					gagal++;
-					errors.push(`${siswa.nis}: ${createError.message}`);
+					errors.push(`${identifier}: ${createError.message}`);
 				}
 				continue;
 			}
 
-			// 3. Update user_id di tabel siswa
-			// Catatan: trigger handle_new_user otomatis membuat users_profile dengan role 'siswa'
+			// 3. Update user_id di tabel target
 			await supabaseAdmin
-				.from('siswa')
+				.from(targetTable)
 				.update({ user_id: newUser.user.id })
-				.eq('id', siswa.id);
+				.eq('id', target.id);
 
-			// 4. Update role di users_profile menjadi 'siswa' (pastikan trigger sudah benar)
+			// 4. Update role di users_profile (trigger seharusnya auto-create, ini untuk jaga-jaga/overwrite role)
 			await supabaseAdmin
 				.from('users_profile')
-				.upsert({ id: newUser.user.id, role: 'siswa', nama: siswa.nama }, { onConflict: 'id' });
+				.upsert({ id: newUser.user.id, role: targetRole, nama: target.nama }, { onConflict: 'id' });
 
 			sukses++;
 		}
 
 		return json({
 			success: true,
-			message: `${sukses} akun berhasil dibuat. ${gagal} gagal.`,
+			message: `${sukses} akun ${type} berhasil dibuat. ${gagal} gagal.`,
 			count: sukses,
 			errors: errors.length > 0 ? errors : undefined
 		});
