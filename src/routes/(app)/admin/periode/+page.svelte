@@ -22,7 +22,7 @@
 			<tbody>
 				{#if loading}
 					<tr><td colspan="4">Memuat...</td></tr>
-				{#else if periodes.length > 0}
+				{:else if periodes.length > 0}
 					{#each periodes as p}
 						<tr>
 							<td>{p.nama_periode}</td><td>{p.tanggal_mulai}</td><td>{p.tanggal_selesai}</td>

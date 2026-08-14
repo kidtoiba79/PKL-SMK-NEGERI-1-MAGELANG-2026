@@ -187,7 +187,7 @@
 
 <Modal show={showModal} title={actionType === 'approve' ? 'Penilaian Laporan' : 'Tolak Laporan (Revisi)'} onclose={() => !isSubmitting && (showModal = false)}>
 	<div class="form-group mb-md">
-		<label class="form-label">Siswa</label>
+		<div class="form-label">Siswa</div>
 		<p><strong>{selectedLaporan?.siswa.nama}</strong></p>
 	</div>
 

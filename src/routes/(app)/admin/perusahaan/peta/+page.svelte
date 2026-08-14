@@ -132,6 +132,8 @@
 				<div class="text-center text-muted" style="padding: 2rem;">Tidak ada data.</div>
 			{:else}
 				{#each filteredPerusahaans as p}
+					<!-- svelte-ignore a11y_click_events_have_key_events -->
+					<!-- svelte-ignore a11y_no_static_element_interactions -->
 					<div class="list-item {selectedPerusahaan?.id === p.id ? 'active' : ''}" onclick={() => selectPerusahaan(p)}>
 						<div class="header">
 							<strong>{p.nama}</strong>

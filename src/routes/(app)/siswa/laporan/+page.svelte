@@ -9,7 +9,7 @@
 	let laporan = $state(null);
 	let loading = $state(true);
 	let isUploading = $state(false);
-	let fileInput;
+	let fileInput = $state(null);
 
 	onMount(async () => {
 		if (!$penempatan.data && $auth.profile?.siswa_id) {

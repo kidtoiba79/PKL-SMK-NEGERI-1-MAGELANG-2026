@@ -1,15 +1,15 @@
 <script>
 	import { onMount, onDestroy } from 'svelte';
 	import Button from './Button.svelte';
-	import { haversineDistance } from '$lib/utils/geolocation.js';
+	import { getDistance } from '$lib/utils/haversine.js';
 
 	let { absensi, onClose } = $props();
 
 	let L;
 	let map;
 	let mapElement;
-	let jarak = 0;
-	let isDalamJangkauan = false;
+	let jarak = $state(0);
+	let isDalamJangkauan = $state(false);
 
 	onMount(async () => {
 		if (!absensi || !absensi.penempatan?.perusahaan) return;
@@ -23,7 +23,7 @@
 
 		// Hitung jarak
 		if (studentLat && studentLng && perusLat && perusLng) {
-			jarak = haversineDistance(studentLat, studentLng, perusLat, perusLng);
+			jarak = getDistance(studentLat, studentLng, perusLat, perusLng);
 			isDalamJangkauan = jarak <= radius;
 		}
 
@@ -98,7 +98,11 @@
 	});
 </script>
 
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div class="modal-backdrop" onclick={onClose}>
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<div class="modal-content" onclick={(e) => e.stopPropagation()}>
 		<div class="modal-header">
 			<div>

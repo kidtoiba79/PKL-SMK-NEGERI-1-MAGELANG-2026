@@ -22,7 +22,7 @@
 			<tbody>
 				{#if loading}
 					<tr><td colspan="2">Memuat...</td></tr>
-				{#else if gurus.length > 0}
+				{:else if gurus.length > 0}
 					{#each gurus as g}<tr><td>{g.nip || '-'}</td><td>{g.nama}</td></tr>{/each}
 				{:else}
 					<tr><td colspan="2">Data kosong</td></tr>
