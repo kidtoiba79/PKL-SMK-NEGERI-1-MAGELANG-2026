@@ -15,8 +15,8 @@
 		if (!absensi || !absensi.penempatan?.perusahaan) return;
 
 		const perusahaan = absensi.penempatan.perusahaan;
-		const studentLat = absensi.lat;
-		const studentLng = absensi.lng;
+		const studentLat = absensi.lat || absensi.lat_pulang || absensi.lat_masuk;
+		const studentLng = absensi.lng || absensi.lng_pulang || absensi.lng_masuk;
 		const perusLat = perusahaan.lat;
 		const perusLng = perusahaan.lng;
 		const radius = perusahaan.radius_meter || 500;

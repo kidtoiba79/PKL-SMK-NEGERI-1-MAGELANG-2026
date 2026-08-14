@@ -5,10 +5,12 @@
 
 	let L;
 	let map;
+	let markersLayer;
 	let perusahaans = $state([]);
 	let absensis = $state([]);
 	let selectedAbsensi = $state(null);
 	let currentTime = $state(new Date());
+	let realtimeChannel = null;
 	
 	let refreshInterval;
 	let timeInterval;
@@ -21,19 +23,28 @@
 		
 		// Inisialisasi peta
 		map = L.map('tv-map', {
-			zoomControl: false // Sembunyikan zoom control untuk TV
+			zoomControl: false
 		}).setView([-7.4704, 110.2177], 13); // Default Magelang
 
-		// Gunakan peta satelit atau peta gelap (opsional, ini pakai OSM standard tapi kita filter di CSS)
 		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			attribution: '&copy; OpenStreetMap'
 		}).addTo(map);
 
+		markersLayer = L.layerGroup().addTo(map);
+
 		await fetchPerusahaans();
 		await fetchAbsensis();
 
-		// Auto refresh tiap 30 detik
-		refreshInterval = setInterval(fetchAbsensis, 30000);
+		// Realtime Supabase Subscription
+		realtimeChannel = supabase
+			.channel('tv_absensi_feed')
+			.on('postgres_changes', { event: '*', schema: 'public', table: 'absensi_pkl' }, () => {
+				fetchAbsensis();
+			})
+			.subscribe();
+
+		// Auto refresh interval tiap 15 detik sebagai fallback
+		refreshInterval = setInterval(fetchAbsensis, 15000);
 		
 		// Jam Digital
 		timeInterval = setInterval(() => {
@@ -44,6 +55,7 @@
 	onDestroy(() => {
 		document.body.classList.remove('tv-mode');
 		if (map) map.remove();
+		if (realtimeChannel) supabase.removeChannel(realtimeChannel);
 		clearInterval(refreshInterval);
 		clearInterval(timeInterval);
 	});
@@ -53,46 +65,105 @@
 		if (data) {
 			perusahaans = data;
 			
-			const icon = L.icon({
+			const iconDudi = L.icon({
 				iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
 				shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-				iconSize: [25, 41], iconAnchor: [12, 41]
+				iconSize: [25, 41], 
+				iconAnchor: [12, 41]
 			});
 
 			data.forEach(p => {
-				L.marker([p.lat, p.lng], { icon })
-					.addTo(map)
-					.bindTooltip(p.nama, { permanent: false, direction: 'top' });
+				if (p.lat && p.lng) {
+					// Lingkaran radius
+					L.circle([p.lat, p.lng], {
+						color: '#0ea5e9',
+						fillColor: '#0ea5e9',
+						fillOpacity: 0.15,
+						radius: p.radius_meter || 500
+					}).addTo(map);
+
+					L.marker([p.lat, p.lng], { icon: iconDudi })
+						.addTo(map)
+						.bindTooltip(`<b>${p.nama}</b><br/>Radius: ${p.radius_meter || 500}m`, { direction: 'top' });
+				}
 			});
 		}
 	}
 
 	async function fetchAbsensis() {
 		const today = new Date().toISOString().split('T')[0];
-		const { data } = await supabase
+		const { data, error } = await supabase
 			.from('absensi_pkl')
 			.select(`
 				*,
-				siswa (nama, kelas),
 				penempatan (
-					perusahaan (nama, lat, lng, radius_meter)
+					id,
+					siswa (id, nama, kelas, nis),
+					perusahaan (id, nama, lat, lng, radius_meter)
 				)
 			`)
-			.gte('waktu', `${today}T00:00:00Z`)
-			.lte('waktu', `${today}T23:59:59Z`)
-			.order('waktu', { ascending: false })
-			.limit(20);
+			.eq('tanggal', today)
+			.order('updated_at', { ascending: false })
+			.limit(30);
 
 		if (data) {
-			absensis = data;
+			absensis = data.map(item => {
+				const isPulang = !!item.jam_pulang;
+				const waktu = isPulang ? item.jam_pulang : (item.jam_masuk || item.created_at);
+				const lat = isPulang ? (item.lat_pulang || item.lat_masuk) : item.lat_masuk;
+				const lng = isPulang ? (item.lng_pulang || item.lng_masuk) : item.lng_masuk;
+				const tipe = item.status === 'hadir' ? (isPulang ? 'pulang' : 'masuk') : item.status;
+
+				return {
+					...item,
+					siswa: item.penempatan?.siswa,
+					waktu: waktu,
+					lat: lat,
+					lng: lng,
+					tipe: tipe
+				};
+			});
+
+			updateMapMarkers();
 		}
+	}
+
+	function updateMapMarkers() {
+		if (!map || !markersLayer || !L) return;
+		markersLayer.clearLayers();
+
+		const iconHadir = L.icon({
+			iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+			shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+			iconSize: [25, 41],
+			iconAnchor: [12, 41]
+		});
+
+		absensis.forEach(a => {
+			if (a.lat && a.lng) {
+				const marker = L.marker([a.lat, a.lng], { icon: iconHadir })
+					.bindPopup(`
+						<div style="font-family: sans-serif;">
+							<strong style="color: #0ea5e9;">${a.siswa?.nama || 'Siswa'}</strong><br/>
+							<small>${a.siswa?.kelas || ''}</small><br/>
+							<b>Status:</b> ${a.status?.toUpperCase()}<br/>
+							<b>Waktu:</b> ${formatTime(a.waktu)}
+						</div>
+					`);
+				markersLayer.addLayer(marker);
+			}
+		});
 	}
 
 	function openVerifikasiMap(absensi) {
 		selectedAbsensi = absensi;
+		if (map && absensi.lat && absensi.lng) {
+			map.flyTo([absensi.lat, absensi.lng], 16, { duration: 1.5 });
+		}
 	}
 
 	function formatTime(isoString) {
+		if (!isoString) return '-';
 		const date = new Date(isoString);
 		return date.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
 	}
@@ -127,8 +198,8 @@
 		</div>
 
 		<div class="live-feed-title">
-			<h3>🔴 Live Absensi Hari Ini</h3>
-			<span class="badge badge-success">Auto Refresh: 30s</span>
+			<h3>🔴 Live Presensi Hari Ini</h3>
+			<span class="badge badge-success">Realtime Active</span>
 		</div>
 
 		<div class="feed-container">
@@ -138,11 +209,30 @@
 				<div class="feed-card" onclick={() => openVerifikasiMap(a)}>
 					<div class="feed-time">{formatTime(a.waktu)}</div>
 					<div class="feed-content">
-						<strong>{a.siswa?.nama}</strong>
-						<div class="text-xs text-muted" style="margin: 4px 0;">{a.penempatan?.perusahaan?.nama}</div>
-						<div style="display: flex; gap: 5px; margin-top: 5px;">
-							<span class="badge {a.tipe === 'masuk' ? 'badge-primary' : 'badge-warning'}">{a.tipe.toUpperCase()}</span>
-							<span class="badge {a.status === 'Hadir' ? 'badge-success' : 'badge-danger'}">{a.status}</span>
+						<strong>{a.siswa?.nama || 'Siswa'}</strong>
+						<div class="text-xs text-muted" style="margin: 4px 0;">
+							{a.penempatan?.perusahaan?.nama || 'DUDI'} ({a.siswa?.kelas || '-'})
+						</div>
+						<div style="display: flex; gap: 5px; margin-top: 5px; flex-wrap: wrap;">
+							{#if a.status === 'hadir'}
+								<span class="badge {a.tipe === 'masuk' ? 'badge-primary' : 'badge-warning'}">
+									{a.tipe.toUpperCase()}
+								</span>
+								<span class="badge badge-success">HADIR</span>
+								{#if a.face_confidence_masuk || a.face_confidence_pulang}
+									<span class="text-xs" style="color: #10b981;">
+										AI: {((a.face_confidence_pulang || a.face_confidence_masuk) * 100).toFixed(0)}%
+									</span>
+								{/if}
+							{:else if a.status === 'izin'}
+								<span class="badge" style="background: var(--color-izin, #f59e0b); color: #fff;">IZIN</span>
+								<span class="text-xs text-muted">{a.keterangan_izin || ''}</span>
+							{:else if a.status === 'sakit'}
+								<span class="badge" style="background: var(--color-sakit, #3b82f6); color: #fff;">SAKIT</span>
+								<span class="text-xs text-muted">{a.keterangan_izin || ''}</span>
+							{:else}
+								<span class="badge badge-danger">ALPA</span>
+							{/if}
 						</div>
 					</div>
 					<div class="feed-action">
@@ -152,7 +242,10 @@
 			{/each}
 			
 			{#if absensis.length === 0}
-				<div class="text-center" style="padding: 2rem; color: #888;">Belum ada data absensi hari ini.</div>
+				<div class="text-center" style="padding: 2.5rem 1rem; color: #888;">
+					<div style="font-size: 2rem; margin-bottom: 0.5rem;">⏱️</div>
+					Belum ada data presensi siswa yang masuk hari ini.
+				</div>
 			{/if}
 		</div>
 	</div>
@@ -163,7 +256,6 @@
 {/if}
 
 <style>
-	/* Global overrides just for this page */
 	:global(.tv-mode .sidebar), :global(.tv-mode .navbar) {
 		display: none !important;
 	}
@@ -186,14 +278,13 @@
 	.tv-map-container {
 		flex: 1;
 		height: 100%;
-		/* Darken map for TV look via CSS filter */
-		filter: brightness(0.8) contrast(1.2) invert(0) grayscale(0.5) sepia(0.2) hue-rotate(180deg);
+		filter: brightness(0.85) contrast(1.1) grayscale(0.3);
 	}
 
 	.tv-sidebar {
-		width: 450px;
-		background: rgba(11, 43, 43, 0.95); /* Deep Teal */
-		color: var(--fg-inverted);
+		width: 460px;
+		background: rgba(15, 23, 42, 0.96); /* Dark Slate */
+		color: var(--fg-inverted, #fff);
 		display: flex;
 		flex-direction: column;
 		border-left: 2px solid rgba(255, 255, 255, 0.08);
@@ -207,11 +298,11 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
-		background: var(--bg-dark);
+		background: rgba(15, 23, 42, 1);
 	}
 
-	.tv-header h2 { margin: 0; color: var(--accent); font-size: 1.5rem; font-weight: 700; letter-spacing: 1px;}
-	.tv-header p { margin: 0; color: var(--fg-muted); font-size: 0.9rem;}
+	.tv-header h2 { margin: 0; color: #0ea5e9; font-size: 1.4rem; font-weight: 700; letter-spacing: 0.5px;}
+	.tv-header p { margin: 0; color: #94a3b8; font-size: 0.85rem;}
 
 	.btn-back {
 		display: flex;
@@ -220,35 +311,35 @@
 		width: 40px;
 		height: 40px;
 		border-radius: 8px;
-		background: rgba(0, 153, 153, 0.1);
-		color: var(--accent);
+		background: rgba(14, 165, 233, 0.1);
+		color: #0ea5e9;
 		text-decoration: none;
 		transition: all 0.2s;
 	}
 	.btn-back:hover {
-		background: var(--accent);
-		color: var(--fg-inverted);
+		background: #0ea5e9;
+		color: #fff;
 	}
 
 	.clock {
 		background: rgba(255, 255, 255, 0.03);
-		padding: 1rem;
+		padding: 0.75rem 1rem;
 		border-radius: 8px;
 		text-align: center;
 		border: 1px solid rgba(255, 255, 255, 0.08);
 	}
-	.time { font-size: 2.5rem; font-weight: 700; color: var(--fg-inverted); font-variant-numeric: tabular-nums; }
-	.date { color: var(--fg-muted); font-size: 0.9rem; margin-top: 5px; }
+	.time { font-size: 2.2rem; font-weight: 700; color: #f8fafc; font-variant-numeric: tabular-nums; }
+	.date { color: #94a3b8; font-size: 0.85rem; margin-top: 4px; }
 
 	.live-feed-title {
-		padding: 1rem 1.5rem;
+		padding: 0.85rem 1.5rem;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		background: rgba(255, 255, 255, 0.03);
 		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 	}
-	.live-feed-title h3 { margin: 0; font-size: 1.1rem; color: var(--fg-inverted); }
+	.live-feed-title h3 { margin: 0; font-size: 1rem; color: #f8fafc; }
 
 	.feed-container {
 		flex: 1;
@@ -259,14 +350,13 @@
 		gap: 0.75rem;
 	}
 
-	/* Sembunyikan scrollbar untuk tampilan bersih di TV */
 	.feed-container::-webkit-scrollbar { width: 0px; }
 
 	.feed-card {
 		background: rgba(255, 255, 255, 0.03);
 		border: 1px solid rgba(255, 255, 255, 0.08);
 		border-radius: 8px;
-		padding: 1rem;
+		padding: 0.85rem 1rem;
 		display: flex;
 		align-items: center;
 		gap: 1rem;
@@ -275,47 +365,48 @@
 	}
 	.feed-card:hover {
 		background: rgba(255, 255, 255, 0.08);
-		transform: translateX(-5px);
-		border-color: var(--accent);
+		transform: translateX(-4px);
+		border-color: #0ea5e9;
 	}
 
 	.feed-time {
-		font-size: 1.2rem;
+		font-size: 1.1rem;
 		font-weight: bold;
-		color: var(--accent);
-		padding-right: 1rem;
+		color: #0ea5e9;
+		padding-right: 0.75rem;
 		border-right: 1px solid rgba(255, 255, 255, 0.08);
+		min-width: 55px;
+		text-align: center;
 	}
 
 	.feed-content { flex: 1; }
 	
 	.feed-action .btn-map {
-		background: rgba(0, 153, 153, 0.1);
-		border: 1px solid rgba(0, 153, 153, 0.3);
-		color: var(--accent);
-		font-size: 1.5rem;
-		width: 40px; height: 40px;
+		background: rgba(14, 165, 233, 0.1);
+		border: 1px solid rgba(14, 165, 233, 0.3);
+		color: #0ea5e9;
+		font-size: 1.3rem;
+		width: 36px; height: 36px;
 		border-radius: 50%;
 		cursor: pointer;
 		display: flex; align-items: center; justify-content: center;
 		transition: all 0.2s;
 	}
 	.feed-card:hover .btn-map {
-		background: var(--accent); color: var(--fg-inverted);
+		background: #0ea5e9; color: #fff;
 	}
 
-	/* RESPONSIVE LAYOUT */
 	@media (max-width: 900px) {
 		.tv-layout {
 			flex-direction: column;
 		}
 		.tv-map-container {
 			flex: 1;
-			min-height: 40vh; /* Peta memakan 40% layar di HP */
+			min-height: 40vh;
 		}
 		.tv-sidebar {
 			width: 100%;
-			flex: 1.5; /* Sidebar list absensi memakan sisa layar */
+			flex: 1.5;
 			border-left: none;
 			border-top: 2px solid rgba(255, 255, 255, 0.08);
 		}
@@ -329,6 +420,6 @@
 			padding: 0.5rem;
 		}
 		.time { font-size: 1.5rem; }
-		.date { display: none; /* Sembunyikan tanggal agar tidak sesak */ }
+		.date { display: none; }
 	}
 </style>
