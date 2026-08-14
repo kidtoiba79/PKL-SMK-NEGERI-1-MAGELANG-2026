@@ -37,7 +37,8 @@
 
 <aside class="sidebar {isOpen ? 'open' : 'sidebar-hidden'}">
 	<!-- Logo Area -->
-	<div style="height: var(--navbar-height); padding: 0 var(--space-xl); display: flex; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08);">
+	<div style="height: var(--navbar-height); padding: 0 var(--space-xl); display: flex; align-items: center; gap: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.08);">
+		<img src="/logo.png" alt="Logo SiPKL" style="width: 28px; height: 28px; border-radius: 6px;" />
 		<span style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--accent);">SiPKL <span style="color: var(--fg-inverted); font-weight: 400;">Magelang</span></span>
 	</div>
 
