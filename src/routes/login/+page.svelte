@@ -56,12 +56,12 @@
 				<path d="M0,20 Q40,10 60,60 T30,100 Q0,80 0,20" fill="url(#grad-leaf2)"/>
 				<defs>
 					<linearGradient id="grad-leaf1" x1="0" y1="0" x2="1" y2="1">
-						<stop offset="0%" stop-color="#ff7b54" />
-						<stop offset="100%" stop-color="#ffb26b" />
+						<stop offset="0%" stop-color="#009999" />
+						<stop offset="100%" stop-color="#00cccc" />
 					</linearGradient>
 					<linearGradient id="grad-leaf2" x1="0" y1="0" x2="1" y2="1">
-						<stop offset="0%" stop-color="#ff5200" />
-						<stop offset="100%" stop-color="#ff7b54" stop-opacity="0.8"/>
+						<stop offset="0%" stop-color="#006666" />
+						<stop offset="100%" stop-color="#009999" stop-opacity="0.8"/>
 					</linearGradient>
 				</defs>
 			</svg>
@@ -140,8 +140,8 @@
 					
 					<defs>
 						<linearGradient id="grad-icon-bg" x1="0" y1="0" x2="1" y2="1">
-							<stop offset="0%" stop-color="#0ea5e9" />
-							<stop offset="100%" stop-color="#2563eb" />
+							<stop offset="0%" stop-color="#009999" />
+							<stop offset="100%" stop-color="#006666" />
 						</linearGradient>
 					</defs>
 				</svg>
@@ -154,7 +154,7 @@
 	:global(body) {
 		margin: 0;
 		padding: 0;
-		background-color: #0b1121; /* Dark outer background */
+		background-color: var(--bg-dark, #0b2b2b); /* Dark outer background */
 	}
 
 	.login-page {
@@ -163,7 +163,7 @@
 		align-items: center;
 		justify-content: center;
 		padding: 2rem;
-		background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0b1121 100%);
+		background: radial-gradient(circle at 50% 50%, #0d3636 0%, #0b2b2b 100%);
 	}
 
 	.login-card {
@@ -274,13 +274,13 @@
 	}
 
 	.form-links a {
-		color: #3b82f6;
+		color: var(--accent, #009999);
 		text-decoration: none;
 		transition: color 0.2s ease;
 	}
 
 	.form-links a:hover {
-		color: #1d4ed8;
+		color: var(--accent-deep, #006666);
 	}
 
 	.form-links .divider {
@@ -292,19 +292,19 @@
 		padding: 1rem;
 		border: none;
 		border-radius: 50px;
-		background: #f43f5e; /* Vibrant pink/red like the reference */
+		background: var(--accent, #009999); /* Tosca */
 		color: white;
 		font-size: 1rem;
 		font-weight: 600;
 		cursor: pointer;
-		box-shadow: 0 8px 20px rgba(244, 63, 94, 0.4);
+		box-shadow: 0 8px 20px rgba(0, 153, 153, 0.4);
 		transition: all 0.3s ease;
 	}
 
 	.btn-submit:hover:not(:disabled) {
 		transform: translateY(-2px);
-		box-shadow: 0 12px 25px rgba(244, 63, 94, 0.5);
-		background: #e11d48;
+		box-shadow: 0 12px 25px rgba(0, 153, 153, 0.5);
+		background: var(--accent-deep, #006666);
 	}
 
 	.btn-submit:disabled {
@@ -315,7 +315,7 @@
 	/* --- RIGHT SIDE (GRAPHIC) --- */
 	.graphic-side {
 		flex: 1.2;
-		background-color: #0f172a;
+		background-color: var(--bg-dark, #0b2b2b);
 		position: relative;
 		display: flex;
 		align-items: center;
@@ -330,7 +330,7 @@
 		bottom: -10%;
 		left: -20%;
 		right: 0;
-		background-color: #1e293b;
+		background-color: #0b2b2b;
 		/* Simulating paper cut waves with multiple border-radius */
 		border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
 		box-shadow: -15px 0 35px rgba(0,0,0,0.5) inset;
@@ -338,7 +338,7 @@
 	}
 
 	.wave1 {
-		background-color: #1e293b;
+		background-color: #0b2b2b;
 		left: -10%;
 		transform: scale(1.1);
 		z-index: 1;
@@ -346,7 +346,7 @@
 	}
 
 	.wave2 {
-		background-color: #0f172a;
+		background-color: #082121;
 		left: 10%;
 		transform: scale(0.9);
 		z-index: 2;
@@ -356,12 +356,12 @@
 	}
 
 	.wave3 {
-		background-color: #0c1222;
+		background-color: #051616;
 		left: 30%;
 		transform: scale(0.8);
 		z-index: 3;
 		box-shadow: -20px 0 40px rgba(0,0,0,0.8) inset;
-		background-image: radial-gradient(circle at 70% 30%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+		background-image: radial-gradient(circle at 70% 30%, rgba(0, 153, 153, 0.15) 0%, transparent 50%);
 	}
 
 	@keyframes floatWave {
