@@ -1,14 +1,16 @@
 import { createClient } from '@supabase/supabase-js';
-import { PUBLIC_SUPABASE_URL } from '$env/static/public';
-import { SUPABASE_SERVICE_ROLE_KEY } from '$env/static/private';
+import { env as publicEnv } from '$env/dynamic/public';
+import { env as privateEnv } from '$env/dynamic/private';
 import { json } from '@sveltejs/kit';
 
-// Supabase Admin Client (hanya di server, tidak expose ke browser)
-const supabaseAdmin = createClient(PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
-	auth: { autoRefreshToken: false, persistSession: false }
-});
-
 export async function POST({ request }) {
+	// Supabase Admin Client (diinisialisasi di dalam fungsi agar dynamic env terbaca saat runtime)
+	const supabaseAdmin = createClient(
+		publicEnv.PUBLIC_SUPABASE_URL, 
+		privateEnv.SUPABASE_SERVICE_ROLE_KEY, 
+		{ auth: { autoRefreshToken: false, persistSession: false } }
+	);
+
 	try {
 		// 1. Ambil semua siswa yang belum punya akun login
 		const { data: siswas, error: fetchError } = await supabaseAdmin
